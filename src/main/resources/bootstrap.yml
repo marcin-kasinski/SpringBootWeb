@@ -17,9 +17,9 @@ spring:
             hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
             hibernate.show_sql: true
     rabbitmq:
-        host: k8snode2
+        host: rabbitmq
         password: guest
-        port: 30672
+        port: 5672
     zipkin:
         baseUrl: http://springbootzipkin:7777
     sleuth:
@@ -50,8 +50,8 @@ spring:
                     environment:
                         spring:
                             rabbitmq:
-                                host: k8snode2
-                                port: 30672
+                                host: rabbitmq
+                                port: 5672
                                 username: guest
                                 password: guest
                                 virtual-host: /
@@ -63,22 +63,13 @@ spring:
                                 stream:
                                     kafka:
                                         binder:
-#                                            brokers: kafka-service
-#                                            zkNodes: kafka-service
-#                                            defaultZkPort: 2181
-#                                            defaultBrokerPort: 9092
-                                            brokers: k8snode1
-                                            zkNodes: k8snode1
-                                            defaultZkPort: 31181
-                                            defaultBrokerPort: 31092
+                                            brokers: kafka-service
+                                            zkNodes: kafka-service
+                                            defaultZkPort: 2181
+                                            defaultBrokerPort: 9092
             kafka:
                 binder:
-#                    brokers: kafka-service
-#                    zkNodes: kafka-service
-#                    defaultZkPort: 2181
-#                    defaultBrokerPort: 9092
-                    brokers: k8snode1
-                    zkNodes: k8snode1
-                    defaultZkPort: 31181
-                    defaultBrokerPort: 31092
-                        
+                    brokers: kafka-service
+                    zkNodes: kafka-service
+                    defaultZkPort: 2181
+                    defaultBrokerPort: 9092
