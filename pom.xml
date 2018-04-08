@@ -30,7 +30,7 @@
 	</properties>
 	
 	  <build>
-    <sourceDirectory>src</sourceDirectory>
+    <sourceDirectory>src/main/java/</sourceDirectory>
     <plugins>
    	<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -46,11 +46,22 @@
        <plugin>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-maven-plugin</artifactId>
-      <version>{spring-boot-version}</version>
-    
+<!--       <version>{spring-boot-version}</version> -->
+ <!--   <version>{spring-boot-version}</version> -->
+      <configuration>
+        <mainClass>${start-class}</mainClass>
+        <layout>ZIP</layout>
+      </configuration>
+      <executions>
+        <execution>
+          <goals>
+            <goal>repackage</goal>
+          </goals>
+        </execution>
+      </executions>
     </plugin>
     
- 
+ <!-- 
     <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
@@ -63,15 +74,9 @@
             </archive>
         </configuration>
     </plugin>
+ -->
 
 
-    
-
-			<!-- .... other plugins ... -->
-
-			<!-- =========================================== -->
-			<!-- make sure antrun is after packaging plugins -->
-			<!-- =========================================== -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-antrun-plugin</artifactId>

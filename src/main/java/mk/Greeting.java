@@ -1,6 +1,7 @@
 package mk;
 
 
+
 public class Greeting {
 
     public long id;
