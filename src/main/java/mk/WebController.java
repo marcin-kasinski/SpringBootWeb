@@ -12,6 +12,8 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.sleuth.Span;
+import org.springframework.cloud.sleuth.Tracer;
 //import org.springframework.cloud.sleuth.Span;
 //import org.springframework.cloud.sleuth.Tracer;
 //import org.springframework.cloud.sleuth.Span;
@@ -32,8 +34,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import brave.Span;
-import brave.Tracer;
+//import brave.Span;
+//import brave.Tracer;
 import mk.kafka.KafkaWorkUnitGateway;
 import mk.rabbitmq.WorkUnit;
 import mk.rabbitmq.WorkUnitGateway;
@@ -119,15 +121,15 @@ class WebController {
     	
     	
 //   	gateway.send("12345678901qaz2wsx3edc4rfv");
-//    	Span span=tracer.getCurrentSpan();
-//		String spanTraceId= Span.idToHex(span.getTraceId());
+    	Span span=tracer.getCurrentSpan();
+		String spanTraceId= Span.idToHex(span.getTraceId());
 //		String spanId= Span.idToHex(span.getSpanId());
 //		String parentId= Span.idToHex(span.getParents().get(0).longValue());
 
 		
-		Span span=tracer.currentSpan();
-		String spanTraceId= span.context().traceIdString();
-		String spanId= String.valueOf(span.context().spanId());
+//		Span span=tracer.currentSpan();
+//		String spanTraceId= span.context().traceIdString();
+//		String spanId= String.valueOf(span.context().spanId());
 
 		
     	model.addAttribute("traceid",spanTraceId);
