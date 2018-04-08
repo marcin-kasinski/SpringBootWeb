@@ -13,6 +13,7 @@ public class WebApp {
 	public static void main(String[] args) {
 
 		System.out.println("ENV variables");
+		
 
 		Map<String, String> env = System.getenv();
 		for (String envName : env.keySet()) {

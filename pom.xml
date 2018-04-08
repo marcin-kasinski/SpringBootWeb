@@ -21,6 +21,7 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 
  		<spring-cloud.versionX1>Dalston.SR1</spring-cloud.versionX1> 
+  		<spring-cloud.versionX1>Finchley.M9</spring-cloud.versionX1>
 
  		
   		<spring-cloud.version>Finchley.M9</spring-cloud.version>
@@ -167,20 +168,9 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-stream-binder-kafka</artifactId>
 			
-			 <exclusions>
-            <exclusion>
-                <groupId>org.apache.kafka</groupId>
-                <artifactId>kafka-clients</artifactId>
-            </exclusion>
-        </exclusions>
-		</dependency>
+		
 
-<!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients -->
-<dependency>
-    <groupId>org.apache.kafka</groupId>
-    <artifactId>kafka-clients</artifactId>
-    <version>0.11.0.2</version>
-</dependency>
+		</dependency>
 
   </dependencies>
   
