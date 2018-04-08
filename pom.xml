@@ -47,15 +47,24 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-maven-plugin</artifactId>
       <version>{spring-boot-version}</version>
-     <configuration>
-        <mainClass>${start-class}</mainClass>
-        <layout>ZIP</layout>
-      </configuration>
-
+    
     </plugin>
     
-    
-    
+ 
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.0.2</version>
+        <configuration>
+            <archive>
+                <manifest>
+                    <mainClass>${start-class}</mainClass>
+                </manifest>
+            </archive>
+        </configuration>
+    </plugin>
+
+
     
 
 			<!-- .... other plugins ... -->
