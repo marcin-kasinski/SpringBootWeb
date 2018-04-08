@@ -1,0 +1,42 @@
+
+filebeat.prospectors:
+
+- input_type: log
+
+  # Paths that should be crawled and fetched. Glob based paths.
+  paths:
+    - /usr/src/myapp/logs/application.log
+
+
+#================================ General =====================================
+
+# The name of the shipper that publishes the network data. It can be used to group
+# all the transactions sent by a single shipper in the web interface.
+#name:mesos1
+
+# The tags of the shipper are included in their own field with each
+# transaction published.
+tags: ["service-XWeb", "web-tier"]
+
+#================================ Outputs =====================================
+
+
+#----------------------------- Kafka output --------------------------------
+
+output.kafka:
+  enabled: true
+  #configure topic as per your application need
+  #hosts: ["hdp1.local:6667","hdp2.local:6667","hdp3.local:6667"]
+  hosts: ["kafka-service:9092"]
+  
+  topic: logs
+#================================ Logging =====================================
+
+# Sets log level. The default log level is info.
+# Available log levels are: critical, error, warning, info, debug
+logging.level: info
+
+# At debug level, you can selectively enable logging only for some components.
+# To enable all selectors use ["*"]. Examples of other selectors are "beat",
+# "publish", "service".
+#logging.selectors: ["*"]

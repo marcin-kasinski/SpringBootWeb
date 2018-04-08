@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<script th:inline="javascript">
+/*<![CDATA[*/
+
+    var traceid = [[${traceid}]];
+    var spanid = [[${spanid}]];
+
+    
+    
+    alert ('traceid:'+traceid);
+    alert ('spanid:'+spanid);
+
+/*]]>*/
+</script>
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+	<h1>Result VER 2</h1>
+	<h1 th:text="'Span trace id: ' + ${traceid}"></h1>
+
+<table>
+<tr th:each="instance : ${map}">
+                        <td th:text="${instance.id}"></td>
+                        <td th:text="${instance.content}"></td>
+</tr>
+</table>
+
+    <a href="/greeting">Submit another message</a>
+
+    <div>
+            <p class="greeting-id">The ID is </p>
+            <p class="greeting-content">The content is </p>
+        </div>
+    
+<script>
+
+
+
+function processAjaxRequest(divid, file, callbackfunction, async) 
+
+{
+
+ if (typeof(async)=='undefined') async=true;
+
+
+  var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+           if (xmlhttp.status == 200) {
+        	     alert('Mam odpowiedz'+xmlhttp.responseText);
+
+			callbackfunction(divid, file, xmlhttp.responseText);
+			
+           }
+           else if (xmlhttp.status == 400) {
+              alert('There was an error 400');
+           }
+           else {
+               alert('something else other than 200 was returned '+xmlhttp.status);
+               alert('xmlhttp.readyState  '+xmlhttp.readyState );
+
+           }
+        }
+    };
+
+
+    xmlhttp.open("GET", file, async);
+    xmlhttp.setRequestHeader("x-b3-traceid", traceid);
+    xmlhttp.setRequestHeader("x-b3-spanid", spanid);
+    xmlhttp.setRequestHeader("x-b3-sampled", "1");
+    xmlhttp.send();
+			
+}			
+
+function processAjaxupdateRuntimeValues(divid, file, injson) 
+{
+
+	alert ('processAjaxupdateRuntimeValues 1 '+injson);
+
+	 try {
+			var obj = JSON.parse(injson);
+		alert();
+} catch(e) {
+        alert(e); // error in the above string (in this case, yes)!
+    }			
+			
+
+//	alert ('processAjaxupdateRuntimeValues 2');
+			
+											
+}
+
+alert("1");
+
+
+
+//processAjaxRequest('----', 'http://192.168.1.244:9090/HelloImplRestWeb/services/customerservice/customers/123',processAjaxupdateRuntimeValues,true); 
+processAjaxRequest('----', 'http://springbootmicroservice:30080/api/get-by-email?email=x@x.com',processAjaxupdateRuntimeValues,true); 
+//processAjaxRequest('----', 'http://192.168.1.244:8081/api/test',processAjaxupdateRuntimeValues,false); 
+//processAjaxRequest('----', 'http://rest-service.guides.spring.io/greeting',processAjaxupdateRuntimeValues,true); 
+
+alert("2");
+
+
+//alert("3");
+
+</script>    
+    
+</body>
+</html>

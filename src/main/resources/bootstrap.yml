@@ -1,0 +1,84 @@
+logging:
+    file: logs/application.log
+server:
+    port: 7070
+spring:
+    application:
+        name: SpringBootWeb
+#spring.jpa.hibernate.ddl-auto=create
+    datasource:
+        url: jdbc:mysql://mysql:30306/test
+        username: root
+        password: secret
+#spring.datasource.driver-class-name=Driver
+# Allows Hibernate to generate SQL optimized for a particular DBMS
+    jpa:
+        properties:
+            hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+            hibernate.show_sql: true
+    rabbitmq:
+        host: k8snode2
+        password: guest
+        port: 30672
+    zipkin:
+        baseUrl: http://springbootzipkin:7777
+    sleuth:
+        sampler:
+            percentage: 1
+    cloud:
+        consul:
+            discovery:
+                preferIpAddress: true
+                instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+            port: 8500        
+        stream:
+            defaultBinder: rabbit1
+            bindings:
+                worksChannel:
+                    destination: my-topic
+                    group: order
+                    content-type: application/json
+                    binder: rabbit1
+                worksChannelKafka:
+                    destination: my-topic
+                    group: order
+                    content-type: application/json
+                    binder: kafka
+            binders:
+                rabbit1:
+                    type: rabbit
+                    environment:
+                        spring:
+                            rabbitmq:
+                                host: k8snode2
+                                port: 30672
+                                username: guest
+                                password: guest
+                                virtual-host: /
+                kafka:
+                    type: kafka
+                    environment:
+                        spring:
+                            cloud:
+                                stream:
+                                    kafka:
+                                        binder:
+#                                            brokers: kafka-service
+#                                            zkNodes: kafka-service
+#                                            defaultZkPort: 2181
+#                                            defaultBrokerPort: 9092
+                                            brokers: k8snode1
+                                            zkNodes: k8snode1
+                                            defaultZkPort: 31181
+                                            defaultBrokerPort: 31092
+            kafka:
+                binder:
+#                    brokers: kafka-service
+#                    zkNodes: kafka-service
+#                    defaultZkPort: 2181
+#                    defaultBrokerPort: 9092
+                    brokers: k8snode1
+                    zkNodes: k8snode1
+                    defaultZkPort: 31181
+                    defaultBrokerPort: 31092
+                        

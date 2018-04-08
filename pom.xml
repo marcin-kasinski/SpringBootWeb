@@ -1,0 +1,191 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>SpringBootWeb</groupId>
+  <artifactId>SpringBootWeb</artifactId>
+   <version>0.0.1-SNAPSHOT</version>
+      <packaging>jar</packaging>
+      
+      <!-- 
+    	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.3.RELEASE</version>
+		<relativePath/> 
+	</parent>
+	 -->
+		<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<maven.compiler.source>1.8</maven.compiler.source> 
+		<maven.compiler.target>1.8</maven.compiler.target>
+
+ 		<spring-cloud.versionX1>Dalston.SR1</spring-cloud.versionX1> 
+
+ 		
+  		<spring-cloud.version>Finchley.M9</spring-cloud.version>
+<!-- 		<spring-boot-version>1.5.10.RELEASE</spring-boot-version> --> 
+  		<spring-boot-version>2.0.1.RELEASE</spring-boot-version>
+	</properties>
+	
+	  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <plugins>
+   	<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+				<includes>
+             <include>src/main/java/**/*.java</include>
+        
+        </includes>
+				</configuration>
+			</plugin>
+
+       <plugin>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-maven-plugin</artifactId>
+      <version>{spring-boot-version}</version>
+     
+
+    </plugin>
+    
+    
+    
+    
+
+			<!-- .... other plugins ... -->
+
+			<!-- =========================================== -->
+			<!-- make sure antrun is after packaging plugins -->
+			<!-- =========================================== -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<id>scp-to-remote</id>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<!-- keyfile+passphrase or password, choose one -->
+								<!-- <scp localFile="${project.basedir}/target/qos-spark-1.0.jar" 
+									remoteToFile="root@kubernetes1.local:/usr/sanss" verbose="true" keyfile="C:\Users\shengw\.ssh\192.168.203.156\id_rsa" 
+									passphrase=""> </scp> -->
+								<scp localFile="${project.basedir}/target/SpringBootWeb-0.0.1-SNAPSHOT.jar"
+									remoteToFile="marcin@tools.local:/home/marcin/SpringBootWeb/docker" verbose="true" password="1qaz2wsx"
+									trust="true">
+								</scp>
+
+								<!-- calls deploy script -->
+								<sshexec host="tools.local" trust="yes" username="marcin"
+									password="1qaz2wsx" command="sed -i -e 's/\r//g' /home/marcin/SpringBootWeb/kubernetes/deploy.sh;sh /home/marcin/SpringBootWeb/kubernetes/deployxxx.sh" />
+
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+				<!-- libraries for scp impl -->
+				<!-- antrun doesn't use os's scp -->
+				<dependencies>
+					<dependency>
+						<groupId>com.jcraft</groupId>
+						<artifactId>jsch</artifactId>
+						<version>0.1.53</version>
+					</dependency>
+					<dependency>
+						<groupId>ant</groupId>
+						<artifactId>ant-jsch</artifactId>
+						<version>1.6.5</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<!-- =========================================== -->
+			<!-- antrun plugin end -->
+			<!-- =========================================== -->
+
+				
+    </plugins>
+  </build>
+   <dependencies>
+
+
+<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+
+</dependency>
+
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-thymeleaf</artifactId>
+</dependency>
+
+
+	<dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-sleuth</artifactId>
+    </dependency>
+    <dependency>
+<groupId>org.springframework.cloud</groupId>
+<artifactId>spring-cloud-sleuth-zipkin</artifactId>
+</dependency>
+
+ <dependency>
+       <groupId>org.springframework.cloud</groupId>
+       <artifactId>spring-cloud-stream-binder-rabbit</artifactId>
+   </dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-stream-binder-kafka</artifactId>
+		</dependency>
+
+
+
+  </dependencies>
+  
+   
+    <dependencyManagement> 
+  <dependencies> 
+
+<dependency>
+			<!-- Import dependency management from Spring Boot -->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-dependencies</artifactId>
+			<version>${spring-boot-version}</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
+
+
+     <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-dependencies</artifactId>
+            <version>${spring-cloud.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+
+  </dependencies> 
+</dependencyManagement> 
+  
+  
+  <repositories>
+    <repository>
+        <id>spring-milestones</id>
+        <name>Spring Milestones</name>
+        <url>https://repo.spring.io/libs-milestone</url>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+    </repository>
+</repositories>
+  
+</project>
