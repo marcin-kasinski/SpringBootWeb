@@ -24,9 +24,9 @@
   		<spring-cloud.versionX1>Finchley.M9</spring-cloud.versionX1>
 
  		
-  		<spring-cloud.version>Dalston.SR1</spring-cloud.version>
+  		<spring-cloud.version>Finchley.M9</spring-cloud.version>
 <!-- 		<spring-boot-version>1.5.10.RELEASE</spring-boot-version> --> 
-  		<spring-boot-version>1.5.10.RELEASE</spring-boot-version>
+  		<spring-boot-version>2.0.1.RELEASE</spring-boot-version>
   		<start-class>mk.WebApp</start-class>
 	</properties>
 	
