@@ -24,7 +24,7 @@
 spring-cloud.version
 Finchley.M9
 Edgware.SR3
-Dalston.SR1
+Dalston.SR3
  -->
  		
   		<spring-cloud.version>Dalston.SR3</spring-cloud.version>
