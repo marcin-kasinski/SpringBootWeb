@@ -30,7 +30,7 @@ Dalston.SR3
   		<spring-cloud.version>Dalston.SR3</spring-cloud.version>
 <!-- 		<spring-boot-version>1.5.10.RELEASE</spring-boot-version> --> 
   		<spring-boot-version>1.5.10.RELEASE</spring-boot-version>
-  		<start-class>mk.ApplicationListener</start-class>
+  		<start-class>mk.WebApp</start-class>
 	</properties>
 	
 	  <build>
