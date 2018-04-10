@@ -7,7 +7,7 @@ spring:
         name: SpringBootWeb
 #spring.jpa.hibernate.ddl-auto=create
     datasource:
-        url: jdbc:mysql://mysql:30306/test
+        url: jdbc:mysql://k8snode1:30306/test
         username: root
         password: secret
 #spring.datasource.driver-class-name=Driver
@@ -17,11 +17,11 @@ spring:
             hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
             hibernate.show_sql: true
     rabbitmq:
-        host: k8snode2
+        host: rabbitmq
         password: guest
-        port: 30672
+        port: 15672
     zipkin:
-        baseUrl: http://springbootzipkin:30080
+        baseUrl: http://springbootzipkin:7777
     sleuth:
         sampler:
             percentage: 1
@@ -50,8 +50,8 @@ spring:
                     environment:
                         spring:
                             rabbitmq:
-                                host: k8snode2
-                                port: 30672
+                                host: rabbitmq
+                                port: 15672
                                 username: guest
                                 password: guest
                                 virtual-host: /
@@ -63,13 +63,13 @@ spring:
                                 stream:
                                     kafka:
                                         binder:
-                                            brokers: k8snode1
-                                            zkNodes: k8snode1
+                                            brokers: kafka-service
+                                            zkNodes: kafka-service
                                             defaultZkPort: 31181
                                             defaultBrokerPort: 31092
             kafka:
                 binder:
-                    brokers: k8snode1
-                    zkNodes: k8snode1
+                    brokers: kafka-service
+                    zkNodes: kafka-service
                     defaultZkPort: 31181
                     defaultBrokerPort: 31092
