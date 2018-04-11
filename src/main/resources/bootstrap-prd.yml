@@ -1,3 +1,4 @@
+app.ajax_url: http://springbootmicroserviceingress:30080/api/get-by-email?email=x@x.com
 logging:
     file: logs/application.log
 server:

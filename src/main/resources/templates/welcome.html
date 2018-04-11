@@ -6,11 +6,9 @@
 
     var traceid = [[${traceid}]];
     var spanid = [[${spanid}]];
-
+    var ajax_url = [[${app_ajax_url}]];
     
-    
-    alert ('traceid:'+traceid);
-    alert ('spanid:'+spanid);
+    alert ('traceid:'+traceid+' spanid:'+spanid+' ajax_url:'+ajax_url);
 
 /*]]>*/
 </script>
@@ -54,9 +52,44 @@ function processAjaxRequest(divid, file, callbackfunction, async)
         if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
            if (xmlhttp.status == 200) {
         	     alert('Mam odpowiedz'+xmlhttp.responseText);
+        	     alert('xmlhttp.getAllResponseHeaders  '+xmlhttp.getAllResponseHeaders() );
 
+				var headersString="";        	     
+        	     
+        	     
+
+
+        	     // Get the raw header string
+        	     var headers = xmlhttp.getAllResponseHeaders();
+
+        	     // Convert the header string into an array
+        	     // of individual headers
+
+  
+          	     var arr = headers.trim().split(/[\r\n]+/);
+      
+
+     	   
+        	     // Create a map of header names to values
+        	     var headerMap = {};
+        	     arr.forEach(function (line) {
+        	       var parts = line.split(': ');
+        	       var header = parts.shift();
+        	       var value = parts.join(': ');
+        	       headerMap[header] = value;
+        	       
+        	       headersString=headersString+value;
+        	       
+        	     });
+        	     
+        
+        	     alert(headersString);
+        	     
+
+        	     
+        	     
 			callbackfunction(divid, file, xmlhttp.responseText);
-			
+			   alert('after callback');
            }
            else if (xmlhttp.status == 400) {
               alert('There was an error 400');
@@ -64,7 +97,7 @@ function processAjaxRequest(divid, file, callbackfunction, async)
            else {
                alert('something else other than 200 was returned '+xmlhttp.status);
                alert('xmlhttp.readyState  '+xmlhttp.readyState );
-//               alert('xmlhttp.getAllResponseHeaders  '+xmlhttp..getAllResponseHeaders() );
+//               alert('xmlhttp.getAllResponseHeaders  '+xmlhttp.getAllResponseHeaders() );
 
            }
         }
@@ -102,7 +135,8 @@ alert("1");
 
 
 //processAjaxRequest('----', 'http://192.168.1.244:9090/HelloImplRestWeb/services/customerservice/customers/123',processAjaxupdateRuntimeValues,true); 
-processAjaxRequest('----', 'http://springbootmicroservice:9191/api/get-by-email?email=x@x.com',processAjaxupdateRuntimeValues,true); 
+//processAjaxRequest('----', 'http://springbootmicroservice:9191/api/get-by-email?email=x@x.com',processAjaxupdateRuntimeValues,true); 
+processAjaxRequest('----', ajax_url,processAjaxupdateRuntimeValues,true); 
 //processAjaxRequest('----', 'http://192.168.1.244:8081/api/test',processAjaxupdateRuntimeValues,false); 
 //processAjaxRequest('----', 'http://rest-service.guides.spring.io/greeting',processAjaxupdateRuntimeValues,true); 
 

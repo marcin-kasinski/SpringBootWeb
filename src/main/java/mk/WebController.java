@@ -23,6 +23,8 @@ import org.springframework.cloud.sleuth.Tracer;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
+import org.springframework.core.env.Environment;
 import org.springframework.integration.support.MessageBuilder;
 //import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.messaging.MessageChannel;
@@ -45,6 +47,12 @@ import mk.rabbitmq.WorkUnitGateway;
 @Controller
 @EnableBinding(Source.class)
 class WebController {
+	
+	@Value("${app.ajax_url}")
+	String ajax_url;
+	
+	@Autowired
+	Environment env;
 	
     @Autowired
     private RestTemplate restTemplate;
@@ -93,6 +101,18 @@ class WebController {
         return "result";
     }
 
+    @Profile("prd")
+    public void sendRabbitAnKafkaRequests(String spanTraceId)
+    {
+		//wywo≥anie rabbitmq i kaka
+   	 WorkUnit sampleWorkUnit = new WorkUnit(spanTraceId, spanTraceId,new Date().toGMTString(), "definition");
+   	 workUnitGateway.generate(sampleWorkUnit);
+   	 kafkaWorkUnitGateway.generate(sampleWorkUnit);
+		//wywo≥anie rabbitmq i kaka
+
+
+    }
+    
     @GetMapping("/")
     public String welcomeVIEW(Model model) {
     	/*
@@ -136,14 +156,17 @@ class WebController {
 		
     	model.addAttribute("traceid",spanTraceId);
     	model.addAttribute("spanid",UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE);
+    	model.addAttribute("app_ajax_url",ajax_url);
+    	
+    	
 		
     	log.info("Log data: "+spanTraceId+" "+spanTraceId);
 
 		
-		//wywo≈Çanie rabbitmq
-    	 WorkUnit sampleWorkUnit = new WorkUnit(spanTraceId, spanTraceId,new Date().toGMTString(), "definition");
-    	 workUnitGateway.generate(sampleWorkUnit);
-    	 kafkaWorkUnitGateway.generate(sampleWorkUnit);
+    	
+    	if (env.acceptsProfiles("prd")) sendRabbitAnKafkaRequests(spanTraceId);
+
+    	 
     	 
     	 //    	 workUnitGateway.generate(MessageBuilder.withPayload(sampleWorkUnit).build());
 //    	source.output().send(MessageBuilder.withPayload(sampleWorkUnit ).build());  	 
