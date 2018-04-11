@@ -1,4 +1,4 @@
-app.ajax_url: http://localhost:9191/api/get-by-email?email=x@x.com
+app.ajax_url: http://localhost:9191/api/get-by-email?email=ajax@ajax.com
 logging:
     file: logs/application.log
 server:
