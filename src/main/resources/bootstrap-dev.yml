@@ -27,6 +27,7 @@ spring:
     sleuth:
         sampler:
             percentage: 1
+            probability: 1            
     cloud:
         consul:
             discovery:
@@ -41,11 +42,6 @@ spring:
                     group: order
                     content-type: application/json
                     binder: rabbit1
-                worksChannelKafka:
-                    destination: my-topic
-                    group: order
-                    content-type: application/json
-                    binder: kafka
             binders:
                 rabbit1:
                     type: rabbit
@@ -57,21 +53,3 @@ spring:
                                 username: guest
                                 password: guest
                                 virtual-host: /
-                kafka:
-                    type: kafka
-                    environment:
-                        spring:
-                            cloud:
-                                stream:
-                                    kafka:
-                                        binder:
-                                            brokers: kafka-service
-                                            zkNodes: kafka-service
-                                            defaultZkPort: 31181
-                                            defaultBrokerPort: 31092
-            kafka:
-                binder:
-                    brokers: kafka-service
-                    zkNodes: kafka-service
-                    defaultZkPort: 31181
-                    defaultBrokerPort: 31092

@@ -27,6 +27,7 @@ spring:
     sleuth:
         sampler:
             percentage: 1
+            probability: 1
     cloud:
         consul:
             discovery:
