@@ -190,7 +190,7 @@ class WebController {
 
     	RestTemplate restTemplate = new RestTemplate();
 //    	User  user  = restTemplate.getForObject("http://localhost:9191/api/get-by-email?email=x@x.com", User.class);
-    	User  user  = restTemplate.getForObject("http://springbootmicroserviceingress:30080/api/get-by-email?email=x@x.com", User.class);
+    	User  user  = restTemplate.getForObject("http://springbootmicroservice:9191/api/get-by-email?email=x@x.com", User.class);
 
 
     	System.out.println("greeting  "+user.getEmail());
