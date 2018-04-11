@@ -50,12 +50,16 @@ class WebController {
 	
 	@Value("${app.ajax_url}")
 	String ajax_url;
+
+	@Value("${app.rest_url}")
+	String rest_url;
 	
 	@Autowired
 	Environment env;
 	
     @Autowired
     private RestTemplate restTemplate;
+
     @Bean
     public RestTemplate getRestTemplate() {
         return new RestTemplate();
@@ -188,9 +192,9 @@ class WebController {
     	
     	model.addAttribute("map",allGreetings);
 
-    	RestTemplate restTemplate = new RestTemplate();
+//    	RestTemplate restTemplate = new RestTemplate();
 //    	User  user  = restTemplate.getForObject("http://localhost:9191/api/get-by-email?email=x@x.com", User.class);
-    	User  user  = restTemplate.getForObject("http://springbootmicroservice:9191/api/get-by-email?email=x@x.com", User.class);
+    	User  user  = restTemplate.getForObject(rest_url, User.class);
 
 
     	System.out.println("greeting  "+user.getEmail());
