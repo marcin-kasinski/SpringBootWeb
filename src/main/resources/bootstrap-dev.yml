@@ -1,4 +1,4 @@
-app.ajax_url: http://springbootmicroserviceingress:30080/api/get-by-email?email=x@x.com
+app.ajax_url: http://localhost:9191/api/get-by-email?email=x@x.com
 logging:
     file: logs/application.log
 server:
@@ -21,11 +21,11 @@ spring:
         host: rabbitmq
         password: guest
         port: 15672
-#    zipkin:
-#        baseUrl: http://springbootzipkin:7777
-#    sleuth:
-#        sampler:
-#            percentage: 1
+    zipkin:
+        baseUrl: http://springbootzipkin:30080
+    sleuth:
+        sampler:
+            percentage: 1
     cloud:
         consul:
             discovery:

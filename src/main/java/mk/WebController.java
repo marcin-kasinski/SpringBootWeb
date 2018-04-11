@@ -188,6 +188,11 @@ class WebController {
     	
     	model.addAttribute("map",allGreetings);
 
+    	RestTemplate restTemplate = new RestTemplate();
+    	User  user  = restTemplate.getForObject(ajax_url, User.class);
+
+
+    	System.out.println("greeting  "+user.getEmail());
 
     	System.out.println("END");
         return "welcome";
