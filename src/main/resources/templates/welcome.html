@@ -108,7 +108,7 @@ function processAjaxRequest(divid, file, callbackfunction, async)
     xmlhttp.setRequestHeader("x-b3-traceid", traceid);
     xmlhttp.setRequestHeader("x-b3-spanid", spanid);
     xmlhttp.setRequestHeader("x-b3-sampled", "1");
-    xmlhttp.setRequestHeader("X-B3-Flags", "1");
+//    xmlhttp.setRequestHeader("X-B3-Flags", "1");
 
     xmlhttp.send();
 			
