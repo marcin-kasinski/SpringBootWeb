@@ -76,3 +76,10 @@ spring:
                     zkNodes: kafka-service
                     defaultZkPort: 2181
                     defaultBrokerPort: 9092
+                    headers:
+                        - X-B3-TraceId
+                        - X-B3-SpanId
+                        - X-B3-Sampled
+                        - X-B3-ParentSpanId
+                        - X-Span-Name
+                        - X-Process-Id
