@@ -13,19 +13,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
+
+import brave.Span;
+import brave.Tracer;
+
+
 //import org.springframework.cloud.sleuth.Span;
 //import org.springframework.cloud.sleuth.Tracer;
 
-//import brave.Span;
-//import brave.Tracer;
-
-
-import org.springframework.cloud.sleuth.Span;
-import org.springframework.cloud.sleuth.Tracer;
-//import org.springframework.cloud.sleuth.Span;
-//import org.springframework.cloud.sleuth.Tracer;
-//import org.springframework.cloud.sleuth.Span;
-//import org.springframework.cloud.sleuth.Tracer;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.context.annotation.Bean;
@@ -152,14 +147,21 @@ class WebController {
     	
     	
 //   	gateway.send("12345678901qaz2wsx3edc4rfv");
+    	
+    	/*
+    	//----------------------------------- 1.5.10 -----------------------------------
     	Span span=tracer.getCurrentSpan();
 		String spanTraceId= Span.idToHex(span.getTraceId());
+		//----------------------------------- 1.5.10 -----------------------------------
+
+		 */
 //		String spanId= Span.idToHex(span.getSpanId());
 //		String parentId= Span.idToHex(span.getParents().get(0).longValue());
 
-		
-//		Span span=tracer.currentSpan();
-//		String spanTraceId= span.context().traceIdString();
+    	//----------------------------------- 2.0.1 -----------------------------------		
+		Span span=tracer.currentSpan();
+		String spanTraceId= span.context().traceIdString();
+		//----------------------------------- 2.0.1 -----------------------------------		
 //		String spanId= String.valueOf(span.context().spanId());
 
 		
