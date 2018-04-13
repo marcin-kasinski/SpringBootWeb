@@ -120,8 +120,8 @@ class WebController {
     	headers.put("mkh3", "mkv3");
     	
    	 WorkUnit sampleWorkUnit = new WorkUnit(spanTraceId, spanTraceId,new Date().toGMTString(), "definition");
-   	 workUnitGateway.generate(sampleWorkUnit, headers);
-   	 kafkaWorkUnitGateway.generate(sampleWorkUnit, headers);
+   	 workUnitGateway.generate(sampleWorkUnit, "mkheader1value");
+   	 kafkaWorkUnitGateway.generate(sampleWorkUnit, "mkheader1value");
 		//wywo³anie rabbitmq i kaka
 
 
