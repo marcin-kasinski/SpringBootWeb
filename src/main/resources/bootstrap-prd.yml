@@ -72,12 +72,12 @@ spring:
                                             defaultBrokerPort: 9092
             kafka:
                 binder:
-                    headers: header1
                     brokers: kafka-service
                     zkNodes: kafka-service
                     defaultZkPort: 2181
                     defaultBrokerPort: 9092
                     headers:
+                        - header1
                         - X-B3-TraceId
                         - X-B3-SpanId
                         - X-B3-Sampled
