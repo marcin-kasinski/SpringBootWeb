@@ -72,6 +72,7 @@ spring:
                                             defaultBrokerPort: 9092
             kafka:
                 binder:
+                    headers: header1
                     brokers: kafka-service
                     zkNodes: kafka-service
                     defaultZkPort: 2181
