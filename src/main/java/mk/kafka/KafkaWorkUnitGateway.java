@@ -16,7 +16,7 @@ import mk.rabbitmq.WorkUnit;
 @MessagingGateway
 public interface KafkaWorkUnitGateway {
 	@Gateway(requestChannel = KafkaWorkUnitsSource.CHANNEL_NAME)
-	//void generate(@Payload WorkUnit workUnit, @Headers Map<String, String> headers);
-	void generate(@Payload WorkUnit workUnit,@Header("header1") String header1);
+	void generate(@Payload WorkUnit workUnit, @Headers Map<String, String> headers);
+//	void generate(@Payload WorkUnit workUnit,@Header("header1") String header1);
 
 }

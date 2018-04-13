@@ -78,6 +78,7 @@ spring:
                     defaultBrokerPort: 9092
                     headers:
                         - header1
+                        - header2
                         - X-B3-TraceId
                         - X-B3-SpanId
                         - X-B3-Sampled
