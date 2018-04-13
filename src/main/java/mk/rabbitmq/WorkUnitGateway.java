@@ -11,6 +11,6 @@ import org.springframework.messaging.handler.annotation.Headers;
 @MessagingGateway
 public interface WorkUnitGateway {
 	@Gateway(requestChannel = WorkUnitsSource.CHANNEL_NAME)
-	void generate(WorkUnit workUnit, @Headers Map headers);
+	void generate(WorkUnit workUnit, @Headers Map<String, String> headers);
 
 }
