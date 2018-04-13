@@ -111,9 +111,17 @@ class WebController {
     public void sendRabbitAnKafkaRequests(String spanTraceId)
     {
 		//wywo³anie rabbitmq i kaka
+    	
+
+    	Map<String, String> headers = new HashMap<String, String>();
+    	
+    	headers.put("mkh1", "mkv1");
+    	headers.put("mkh2", "mkv2");
+    	headers.put("mkh3", "mkv3");
+    	
    	 WorkUnit sampleWorkUnit = new WorkUnit(spanTraceId, spanTraceId,new Date().toGMTString(), "definition");
-   	 workUnitGateway.generate(sampleWorkUnit);
-   	 kafkaWorkUnitGateway.generate(sampleWorkUnit);
+   	 workUnitGateway.generate(sampleWorkUnit, headers);
+   	 kafkaWorkUnitGateway.generate(sampleWorkUnit, headers);
 		//wywo³anie rabbitmq i kaka
 
 
