@@ -107,8 +107,29 @@ class WebController {
         return "result";
     }
 
-    @Profile("prd")
-    public void sendRabbitAnKafkaRequests(String spanTraceId)
+//    @Profile("prd")
+    public void sendKafkaRequests(String spanTraceId)
+    {
+		//wywo³anie rabbitmq i kaka
+    	
+
+    	Map<String, String> headers = new HashMap<String, String>();
+    	
+    	headers.put("header1", "mkheader1value");
+    	headers.put("header2", "mkheader2value");
+
+    	
+   	 WorkUnit sampleWorkUnit = new WorkUnit(spanTraceId, spanTraceId,new Date().toGMTString(), "definition");
+//   	 workUnitGateway.generate(sampleWorkUnit, "mkheader1value");
+//   	 kafkaWorkUnitGateway.generate(sampleWorkUnit, "mkheader1value");
+
+   	 kafkaWorkUnitGateway.generate(sampleWorkUnit, headers);
+		//wywo³anie rabbitmq i kaka
+
+
+    }
+
+    public void sendRabbitRequests(String spanTraceId)
     {
 		//wywo³anie rabbitmq i kaka
     	
@@ -123,12 +144,9 @@ class WebController {
 //   	 workUnitGateway.generate(sampleWorkUnit, "mkheader1value");
 //   	 kafkaWorkUnitGateway.generate(sampleWorkUnit, "mkheader1value");
    	 workUnitGateway.generate(sampleWorkUnit, headers);
-   	 kafkaWorkUnitGateway.generate(sampleWorkUnit, headers);
-		//wywo³anie rabbitmq i kaka
-
 
     }
-    
+
     @GetMapping("/")
     public String welcomeVIEW(Model model) {
     	/*
@@ -190,7 +208,8 @@ class WebController {
 
 		
     	
-    	if (env.acceptsProfiles("prd")) sendRabbitAnKafkaRequests(spanTraceId);
+    	if (env.acceptsProfiles("prd")) sendRabbitRequests(spanTraceId);
+    	sendKafkaRequests(spanTraceId);
 
     	 
     	 
@@ -214,12 +233,12 @@ class WebController {
     	
     	model.addAttribute("map",allGreetings);
 
-//    	RestTemplate restTemplate = new RestTemplate();
+
 //    	User  user  = restTemplate.getForObject("http://localhost:9191/api/get-by-email?email=x@x.com", User.class);
-    	User  user  = restTemplate.getForObject(rest_url, User.class);
+//    	User  user  = restTemplate.getForObject(rest_url, User.class);
 
 
-    	System.out.println("greeting  "+user.getEmail());
+//    	System.out.println("greeting  "+user.getEmail());
 
     	System.out.println("END");
         return "welcome";
