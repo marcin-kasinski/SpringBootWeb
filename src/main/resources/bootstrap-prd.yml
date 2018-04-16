@@ -24,10 +24,14 @@ spring:
         port: 5672
     zipkin:
         baseUrl: http://springbootzipkin:7777
+        sender:
+            type: KAFKA
     sleuth:
         sampler:
             percentage: 1
             probability: 1
+    kafka:
+        bootstrap-servers: mainserver:9092            
     cloud:
         consul:
             discovery:

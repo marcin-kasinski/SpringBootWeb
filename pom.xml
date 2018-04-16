@@ -154,13 +154,11 @@ Dalston.SR3
 <artifactId>spring-cloud-sleuth-zipkin</artifactId>
 </dependency>
 
-<!-- 
+
  <dependency>
        <groupId>org.springframework.cloud</groupId>
        <artifactId>spring-cloud-stream-binder-rabbit</artifactId>
    </dependency>
- -->
-
 
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
