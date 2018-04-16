@@ -13,7 +13,7 @@ public class WebApp {
 	public static void main(String[] args) {
 
 		System.out.println("Version 16.04.2018");
-		System.out.println("ENV variables");
+		System.out.println("Environment variables");
 		
 
 		Map<String, String> env = System.getenv();
