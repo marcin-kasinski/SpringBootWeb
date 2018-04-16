@@ -30,6 +30,7 @@ spring:
         sampler:
             percentage: 1
             probability: 1
+#if you want to send spans via kafka...            
     kafka:
         bootstrap-servers: mainserver:9092            
     cloud:
