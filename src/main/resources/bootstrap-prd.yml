@@ -25,7 +25,7 @@ spring:
     zipkin:
         baseUrl: http://springbootzipkin:7777
         sender:
-            type: WEB
+            type: web
     sleuth:
         sampler:
             percentage: 1
