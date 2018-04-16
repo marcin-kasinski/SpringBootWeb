@@ -32,7 +32,7 @@ spring:
             probability: 1
 #if you want to send spans via kafka...            
     kafka:
-        bootstrap-servers: mainserver:9092            
+        bootstrap-servers: kafka-service:9092            
     cloud:
         consul:
             discovery:
