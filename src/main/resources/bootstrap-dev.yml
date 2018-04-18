@@ -25,13 +25,13 @@ spring:
     zipkin:
         baseUrl: http://localhost:7777
         sender:
-            type: KAFKA
+            type: web
     sleuth:
         sampler:
             percentage: 1
             probability: 1
-    kafka:
-        bootstrap-servers: mainserver:9092            
+#    kafka:
+#        bootstrap-servers: mainserver:9092            
     cloud:
         consul:
             discovery:
