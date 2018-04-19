@@ -31,8 +31,8 @@ spring:
             percentage: 1
             probability: 1
 #if you want to send spans via kafka...            
-    kafka:
-        bootstrap-servers: kafka-service:9092            
+#    kafka:
+#        bootstrap-servers: kafka-service:9092            
     cloud:
         consul:
             discovery:
@@ -71,14 +71,18 @@ spring:
                                 stream:
                                     kafka:
                                         binder:
-                                            brokers: kafka-service
-                                            zkNodes: kafka-service
+#                                            brokers: kafka-service
+#                                            zkNodes: kafka-service
+                                            brokers: kafka-0.k-hs.default.svc.cluster.local,kafka-1.k-hs.default.svc.cluster.local,kafka-2.k-hs.default.svc.cluster.local
+                                            zkNodes: zk-0.zk-hs.default.svc.cluster.local,zk-1.zk-hs.default.svc.cluster.local,zk-2.zk-hs.default.svc.cluster.local
                                             defaultZkPort: 2181
                                             defaultBrokerPort: 9092
             kafka:
                 binder:
-                    brokers: kafka-service
-                    zkNodes: kafka-service
+#                    brokers: kafka-service
+#                    zkNodes: kafka-service
+                    brokers: kafka-0.k-hs.default.svc.cluster.local,kafka-1.k-hs.default.svc.cluster.local,kafka-2.k-hs.default.svc.cluster.local
+                    zkNodes: zk-0.zk-hs.default.svc.cluster.local,zk-1.zk-hs.default.svc.cluster.local,zk-2.zk-hs.default.svc.cluster.local
                     defaultZkPort: 2181
                     defaultBrokerPort: 9092
                     headers:
