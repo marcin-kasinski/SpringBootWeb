@@ -1,5 +1,5 @@
 #app.ajax_url: http://springbootmicroserviceingress:30080/api/get-by-email?email=ajax@ajax.com
-app.ajax_url: ${APP_AJAX_URL:http://springbootmicroserviceingress:30080/api/get-by-email?email=ajax@ajax.com}
+app.ajax_url: ${APP_AJAX_URL:http://nginx:30080/api/get-by-email?email=ajax@ajax.com}
 app.rest_url: http://springbootmicroservice:9191/api/get-by-email?email=x@x.com
 logging:
     file: logs/application.log
