@@ -254,7 +254,12 @@ class WebController {
 
 
 //    	User  user  = restTemplate.getForObject("http://localhost:9191/api/get-by-email?email=x@x.com", User.class);
-//    	User  user  = restTemplate.getForObject(rest_url, User.class);
+    	
+    	System.out.println("executing rest_url "+rest_url);
+    	
+    	User  user  = restTemplate.getForObject(rest_url, User.class);
+
+    	System.out.println("user "+user.getEmail());
 
 
 //    	System.out.println("greeting  "+user.getEmail());
