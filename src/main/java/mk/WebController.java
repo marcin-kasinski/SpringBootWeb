@@ -192,7 +192,7 @@ class WebController {
     	log.info("kafkaTemplate sent");
 */
         
-    	log.info("welcomeVIEW executed");
+    	log.info("IN welcomeVIEW executed");
     	
     	
 //   	gateway.send("12345678901qaz2wsx3edc4rfv");
