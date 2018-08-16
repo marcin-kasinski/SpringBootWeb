@@ -96,3 +96,25 @@ spring:
                         - X-B3-ParentSpanId
                         - X-Span-Name
                         - X-Process-Id
+endpoints:
+    prometheus:
+        enabled: true 
+management:
+    security:
+        enabled: false
+    endpoint:
+        metrics:
+            enabled: true
+        prometheus:
+            enabled: true 
+    endpoints:
+        web:
+            exposure:
+                include: "info, health, prometheus"
+        metrics:
+            enabled: true
+    metrics:
+        export:
+            prometheus:
+                enabled: true            
+                        
