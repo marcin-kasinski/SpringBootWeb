@@ -51,7 +51,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-
+import mk.http.RequestResponseLoggingInterceptor;
 import mk.kafka.KafkaWorkUnitGateway;
 import mk.rabbitmq.WorkUnit;
 import mk.rabbitmq.WorkUnitGateway;
@@ -73,8 +73,14 @@ class WebController {
 	
     @Autowired
     private RestTemplate restTemplate;
+    
+    public WebController() {
+		super();
+		restTemplate.setInterceptors(Collections.singletonList(new RequestResponseLoggingInterceptor()));
+		// TODO Auto-generated constructor stub
+	}
 
-    @Bean
+	@Bean
     public RestTemplate getRestTemplate() {
         return new RestTemplate();
     }
