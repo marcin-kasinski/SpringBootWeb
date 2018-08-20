@@ -5,4 +5,4 @@
 #cat /etc/init.d/filebeat
 /etc/init.d/filebeat start
 #java -jar -Dspring.profiles.active=$SPRING_PROFILE SpringBootWeb-0.0.1-SNAPSHOT.jar --spring.cloud.consul.discovery.ipAddress=$HOST --spring.cloud.consul.discovery.port=$PORT0 --spring.cloud.consul.host=$HOST
-java -jar -Dspring.profiles.active=$SPRING_PROFILE SpringBootWeb-0.0.1-SNAPSHOT.jar
+java -jar -Dspring.profiles.active=$SPRING_PROFILE -Dlogging.level.org.apache.http=DEBUG SpringBootWeb-0.0.1-SNAPSHOT.jar
