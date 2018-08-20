@@ -73,18 +73,13 @@ class WebController {
 	
     @Autowired
     private RestTemplate restTemplate;
-    
-    public WebController() {
-		super();
-		restTemplate.setInterceptors(Collections.singletonList(new RequestResponseLoggingInterceptor()));
-		// TODO Auto-generated constructor stub
-	}
 
-	@Bean
+    /*
+    @Bean
     public RestTemplate getRestTemplate() {
         return new RestTemplate();
     }
-
+*/
 //@Autowired
 //private SampleSink gateway;
 
@@ -263,6 +258,9 @@ class WebController {
     	
     	log.info("executing rest_url "+rest_url);
     	
+    	
+		restTemplate.setInterceptors(Collections.singletonList(new RequestResponseLoggingInterceptor()));
+
     	User  user  = restTemplate.getForObject(rest_url, User.class);
 
     	log.info("user "+user.getEmail());
