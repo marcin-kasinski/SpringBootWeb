@@ -228,7 +228,7 @@ class WebController {
 		
     	
     	if (env.acceptsProfiles("prd")) sendRabbitRequests(spanTraceId);
-    	sendKafkaRequests(spanTraceId);
+    	if (env.acceptsProfiles("prd")) sendKafkaRequests(spanTraceId);
 
     	 
     	 

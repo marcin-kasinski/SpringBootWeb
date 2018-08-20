@@ -1,6 +1,6 @@
 #app.ajax_url: http://springbootmicroserviceingress:30080/api/get-by-email?email=ajax@ajax.com
-app.ajax_url: ${APP_AJAX_URL:http://nginx:30080/api/get-by-email?email=ajax@ajax.com}
-app.rest_url: http://springbootmicroservice:9191/api/get-by-email?email=x@x.com
+app.ajax_url: ${APP_AJAX_URL:http://localhost:9191/api/get-by-email?email=ajax@ajax.com}
+app.rest_url: http://localhost:9191/api/get-by-email?email=x@x.com
 logging:
     level:
         root: INFO 
@@ -37,7 +37,7 @@ spring:
         password: guest
         port: 5672
     zipkin:
-        baseUrl: http://springbootzipkin:7777
+        baseUrl: http://springbootzipkin:30080
         sender:
             type: web
     sleuth:
