@@ -218,7 +218,9 @@ class WebController {
 
 		
     	model.addAttribute("traceid",spanTraceId);
-    	model.addAttribute("spanid",UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE);
+    	//model.addAttribute("spanid",UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE);
+    	model.addAttribute("spanid",(UUID.randomUUID().toString()).replace("-","").substring(0, 16));
+    	
     	model.addAttribute("app_ajax_url",ajax_url);
     	
     	
