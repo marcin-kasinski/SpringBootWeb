@@ -74,12 +74,11 @@ class WebController {
     @Autowired
     private RestTemplate restTemplate;
 
-    /*
     @Bean
     public RestTemplate getRestTemplate() {
         return new RestTemplate();
     }
-*/
+
 //@Autowired
 //private SampleSink gateway;
 
