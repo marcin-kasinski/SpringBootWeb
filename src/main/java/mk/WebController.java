@@ -258,7 +258,7 @@ class WebController {
     	log.info("executing rest_url "+rest_url);
     	
     	
-		restTemplate.setInterceptors(Collections.singletonList(new RequestResponseLoggingInterceptor()));
+		//restTemplate.setInterceptors(Collections.singletonList(new RequestResponseLoggingInterceptor()));
 
     	User  user  = restTemplate.getForObject(rest_url, User.class);
 
