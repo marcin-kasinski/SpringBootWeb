@@ -105,6 +105,8 @@ function processAjaxRequest(divid, file, callbackfunction, async)
 
 
     xmlhttp.open("GET", file, async);
+    // bez poniższego accept nie działa
+    xmlhttp.setRequestHeader("accept", "application/json, application/*+json");
     xmlhttp.setRequestHeader("X-B3-TraceId", traceid);
     xmlhttp.setRequestHeader("X-B3-SpanId", spanid);
     xmlhttp.setRequestHeader("X-B3-ParentSpanId", traceid);
