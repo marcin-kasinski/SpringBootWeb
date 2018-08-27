@@ -36,6 +36,7 @@ import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
+import org.springframework.http.ResponseEntity;
 import org.springframework.integration.support.MessageBuilder;
 //import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.messaging.MessageChannel;
@@ -262,12 +263,13 @@ class WebController {
     	
 		//restTemplate.setInterceptors(Collections.singletonList(new RequestResponseLoggingInterceptor()));
 
-    	User  user  = restTemplate.getForObject(rest_url, User.class);
+//    	User  user  = restTemplate.getForObject(rest_url, User.class);
 
-    	log.info("user "+user.getEmail());
+//    	log.info("user "+user.getEmail());
 
+    	ResponseEntity<User> response =restTemplate.postForEntity(rest_url, new User("jakisemail@mail.com","Marcin"), User.class);
 
-//    	System.out.println("greeting  "+user.getEmail());
+    	System.out.println("added user "+response.getBody());
 
     	System.out.println("END");
         return "welcome";

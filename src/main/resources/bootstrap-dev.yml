@@ -1,6 +1,7 @@
 #app.ajax_url: http://springbootmicroserviceingress:30080/api/get-by-email?email=ajax@ajax.com
 app.ajax_url: ${APP_AJAX_URL:http://localhost:9191/api/get-by-email?email=ajax@ajax.com}
-app.rest_url: http://localhost:9191/api/get-by-email?email=x@x.com
+#app.rest_url: http://localhost:9191/api/get-by-email?email=x@x.com
+app.rest_url: http://localhost:9191/api/adduser
 logging:
     level:
         root: INFO 
