@@ -1,0 +1,121 @@
+#app.ajax_url: http://springbootmicroserviceingress:30080/api/get-by-email?email=ajax@ajax.com
+app.ajax_url: ${APP_AJAX_URL:http://nginx:30080/api/get-by-email?email=ajax@ajax.com}
+#app.rest_url: ${APP_REST_URL:http://springbootmicroservice:9191/api/get-by-email?email=x@x.com
+#app.rest_url: ${APP_REST_URL:http://nginx/api/get-by-email?email=x@x.com}
+app.rest_url: ${APP_REST_URL:http://nginx/api/adduser}
+logging:
+    file: logs/application.log
+server:
+    port: 7070
+spring:
+    application:
+        name: SpringBootWeb
+#spring.jpa.hibernate.ddl-auto=create
+    datasource:
+        url: jdbc:mysql://mysql:30306/test
+        username: root
+        password: secret
+#spring.datasource.driver-class-name=Driver
+# Allows Hibernate to generate SQL optimized for a particular DBMS
+    jpa:
+        properties:
+            hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+            hibernate.show_sql: true
+    rabbitmq:
+        host: rabbitmq
+        password: guest
+        port: 5672
+    zipkin:
+        baseUrl: http://springbootzipkin:7777
+        sender:
+            type: web
+    sleuth:
+        sampler:
+            percentage: 1
+            probability: 1
+#if you want to send spans via kafka...            
+#    kafka:
+#        bootstrap-servers: kafka-service:9092            
+    cloud:
+        consul:
+            discovery:
+                preferIpAddress: true
+                instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+            port: 8500        
+        stream:
+            defaultBinder: rabbit1
+            bindings:
+                worksChannel:
+                    destination: my-topic
+                    group: order
+                    content-type: application/json
+                    binder: rabbit1
+                worksChannelKafka:
+                    destination: my-topic
+                    group: order
+                    content-type: application/json
+                    binder: kafka
+            binders:
+                rabbit1:
+                    type: rabbit
+                    environment:
+                        spring:
+                            rabbitmq:
+                                host: rabbitmq
+                                port: 5672
+                                username: guest
+                                password: guest
+                                virtual-host: /
+                kafka:
+                    type: kafka
+                    environment:
+                        spring:
+                            cloud:
+                                stream:
+                                    kafka:
+                                        binder:
+#                                            brokers: kafka-service
+#                                            zkNodes: kafka-service
+                                            brokers: kafka-0.k-hs.default.svc.cluster.local,kafka-1.k-hs.default.svc.cluster.local,kafka-2.k-hs.default.svc.cluster.local
+                                            zkNodes: zk-0.zk-hs.default.svc.cluster.local,zk-1.zk-hs.default.svc.cluster.local,zk-2.zk-hs.default.svc.cluster.local
+                                            defaultZkPort: 2181
+                                            defaultBrokerPort: 9092
+            kafka:
+                binder:
+#                    brokers: kafka-service
+#                    zkNodes: kafka-service
+                    brokers: kafka-0.k-hs.default.svc.cluster.local,kafka-1.k-hs.default.svc.cluster.local,kafka-2.k-hs.default.svc.cluster.local
+                    zkNodes: zk-0.zk-hs.default.svc.cluster.local,zk-1.zk-hs.default.svc.cluster.local,zk-2.zk-hs.default.svc.cluster.local
+                    defaultZkPort: 2181
+                    defaultBrokerPort: 9092
+                    headers:
+                        - header1
+                        - header2
+                        - X-B3-TraceId
+                        - X-B3-SpanId
+                        - X-B3-Sampled
+                        - X-B3-ParentSpanId
+                        - X-Span-Name
+                        - X-Process-Id
+endpoints:
+    prometheus:
+        enabled: true 
+management:
+    security:
+        enabled: false
+    endpoint:
+        metrics:
+            enabled: true
+        prometheus:
+            enabled: true 
+    endpoints:
+        web:
+            exposure:
+                include: "info, health, prometheus"
+        metrics:
+            enabled: true
+    metrics:
+        export:
+            prometheus:
+                enabled: true            
+                        
