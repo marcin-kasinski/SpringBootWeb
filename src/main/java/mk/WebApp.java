@@ -13,7 +13,7 @@ public class WebApp {
 
 	public static void main(String[] args) {
 
-		System.out.println("Version 16.04.2018 (changed type to web)");
+		System.out.println("Version 31.08.2018");
 		System.out.println("Environment variables");
 		
 //		UUID uniqueKey = UUID.randomUUID();

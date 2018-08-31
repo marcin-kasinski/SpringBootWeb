@@ -74,29 +74,10 @@ spring:
                                 stream:
                                     kafka:
                                         binder:
-#                                            brokers: kafka-service
-#                                            zkNodes: kafka-service
                                             brokers: kafka-0.k-hs.default.svc.cluster.local,kafka-1.k-hs.default.svc.cluster.local,kafka-2.k-hs.default.svc.cluster.local
                                             zkNodes: zk-0.zk-hs.default.svc.cluster.local,zk-1.zk-hs.default.svc.cluster.local,zk-2.zk-hs.default.svc.cluster.local
                                             defaultZkPort: 2181
                                             defaultBrokerPort: 9092
-            kafka:
-                binder:
-#                    brokers: kafka-service
-#                    zkNodes: kafka-service
-                    brokers: kafka-0.k-hs.default.svc.cluster.local,kafka-1.k-hs.default.svc.cluster.local,kafka-2.k-hs.default.svc.cluster.local
-                    zkNodes: zk-0.zk-hs.default.svc.cluster.local,zk-1.zk-hs.default.svc.cluster.local,zk-2.zk-hs.default.svc.cluster.local
-                    defaultZkPort: 2181
-                    defaultBrokerPort: 9092
-                    headers:
-                        - header1
-                        - header2
-                        - X-B3-TraceId
-                        - X-B3-SpanId
-                        - X-B3-Sampled
-                        - X-B3-ParentSpanId
-                        - X-Span-Name
-                        - X-Process-Id
 endpoints:
     prometheus:
         enabled: true 
