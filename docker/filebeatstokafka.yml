@@ -27,6 +27,7 @@ output.kafka:
   enabled: true
   #configure topic as per your application need
   #hosts: ["hdp1.local:6667","hdp2.local:6667","hdp3.local:6667"]
+  #KAFKA_BROKER_NODES kafka nodes from env variable
   hosts: '${KAFKA_BROKER_NODES:"host1:9092,host2:9092,host3:9092"}'
   
   topic: logs
