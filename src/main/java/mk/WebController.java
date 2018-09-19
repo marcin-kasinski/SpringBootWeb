@@ -54,6 +54,7 @@ import org.springframework.web.client.RestTemplate;
 
 import mk.http.RequestResponseLoggingInterceptor;
 import mk.kafka.KafkaWorkUnitGateway;
+import mk.metrics.SampleMetricBean;
 import mk.rabbitmq.WorkUnit;
 import mk.rabbitmq.WorkUnitGateway;
 
@@ -79,6 +80,9 @@ class WebController {
     public RestTemplate getRestTemplate() {
         return new RestTemplate();
     }
+
+    @Autowired
+	private SampleMetricBean sampleBean;
 
 //@Autowired
 //private SampleSink gateway;
@@ -125,7 +129,7 @@ class WebController {
 //    @Profile("prd")
     public void sendKafkaRequests(String spanTraceId)
     {
-		//wywo³anie rabbitmq i kaka
+		//wywoï¿½anie rabbitmq i kaka
     	
 
     	Map<String, String> headers = new HashMap<String, String>();
@@ -139,14 +143,14 @@ class WebController {
 //   	 kafkaWorkUnitGateway.generate(sampleWorkUnit, "mkheader1value");
 
    	 kafkaWorkUnitGateway.generate(sampleWorkUnit, headers);
-		//wywo³anie rabbitmq i kaka
+		//wywoï¿½anie rabbitmq i kaka
 
 
     }
 
     public void sendRabbitRequests(String spanTraceId)
     {
-		//wywo³anie rabbitmq i kaka
+		//wywoï¿½anie rabbitmq i kaka
     	
 
     	Map<String, String> headers = new HashMap<String, String>();
@@ -194,7 +198,8 @@ class WebController {
 */
         
     	log.info("IN welcomeVIEW executed");
-    	
+		sampleBean.handleMessage("XXX");
+
     	
 //   	gateway.send("12345678901qaz2wsx3edc4rfv");
     	
@@ -266,11 +271,17 @@ class WebController {
 //    	User  user  = restTemplate.getForObject(rest_url, User.class);
 
 //    	log.info("user "+user.getEmail());
-
+    	
+    	try {
     	ResponseEntity<User> response =restTemplate.postForEntity(rest_url, new User("jakisemail@mail.com","Marcin"), User.class);
 
     	System.out.println("added user "+response.getBody());
-
+    	}
+    	catch(Exception e)
+    	{
+    		log.info("add user failed"+e);
+    	}
+    	
     	System.out.println("END");
         return "welcome";
     }
