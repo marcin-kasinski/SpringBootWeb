@@ -199,6 +199,7 @@ class WebController {
         
     	log.info("IN welcomeVIEW executed");
 		sampleBean.handleMessage("XXX");
+		long startTime = System.nanoTime();
 
     	
 //   	gateway.send("12345678901qaz2wsx3edc4rfv");
@@ -281,8 +282,13 @@ class WebController {
     	{
     		log.info("add user failed"+e);
     	}
+
     	
     	System.out.println("END");
+    	long duration = System.nanoTime() - startTime;
+    			
+    	sampleBean.handleTimerNanoseconds(duration);
+    	
         return "welcome";
     }
 
