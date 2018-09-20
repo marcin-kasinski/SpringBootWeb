@@ -34,7 +34,7 @@ public class SampleMetricBean {
 		
 		System.out.println("handleTimer START / duration: nanoseconds : "+duration+" / seconds :"+duration/1000000000);
 		//this.timer.record(duration, TimeUnit.NANOSECONDS);
-		this.timer.record(duration/1000000000, TimeUnit.SECONDS);
+		this.timer.record(Math.abs(duration/1000000000), TimeUnit.SECONDS);
 		System.out.println("handleTimer END");
 	}
 }
