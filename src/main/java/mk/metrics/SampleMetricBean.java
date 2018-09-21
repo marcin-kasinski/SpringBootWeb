@@ -15,6 +15,7 @@ public class SampleMetricBean {
 	private final Counter counter;
 	private final Timer timer1;
 	private final Timer timer2;
+	private final Timer timer3;
 
 	public SampleMetricBean(MeterRegistry registry) {
 		
@@ -23,6 +24,14 @@ public class SampleMetricBean {
 		this.counter = registry.counter("MKWEB_6_received.messages");
 		this.timer1 = registry.timer("MKWEB_exec_time1");
 		this.timer2 = registry.timer("MKWEB_exec_time2");
+		
+		this.timer3= Timer.builder("MKWEB_exec_time")
+  .tag("host", "MYHOST")
+  .tag("region", "us-east-1")
+  .register(registry);
+
+
+		
 	}
 
 	public void handleMessage(String message) {
@@ -38,6 +47,7 @@ public class SampleMetricBean {
 		//this.timer.record(duration, TimeUnit.NANOSECONDS);
 		this.timer1.record(Math.abs(duration/1000000), TimeUnit.MILLISECONDS);
 		this.timer2.record(Math.abs(duration/1000000000), TimeUnit.SECONDS);
+		this.timer3.record(Math.abs(duration/1000000), TimeUnit.MILLISECONDS);
 		System.out.println("handleTimer END");
 	}
 }
