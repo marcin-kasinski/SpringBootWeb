@@ -1,5 +1,6 @@
 package mk.metrics;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.stereotype.Component;
@@ -48,7 +49,7 @@ public class SampleMetricBean {
 		//this.timer.record(duration, TimeUnit.NANOSECONDS);
 		this.timer1.record(Math.abs(duration/1000000), TimeUnit.MILLISECONDS);
 		this.timer2.record(Math.abs(duration/1000000000), TimeUnit.SECONDS);
-		this.timer3.record(Math.abs(duration/1000000), TimeUnit.MILLISECONDS);
+		this.timer3.record(Duration.ofMillis(duration/1000000));
 		System.out.println("handleTimer END");
 	}
 }
