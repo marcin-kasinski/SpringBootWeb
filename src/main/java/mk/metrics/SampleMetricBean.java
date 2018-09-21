@@ -26,6 +26,7 @@ public class SampleMetricBean {
 		this.timer2 = registry.timer("MKWEB_exec_time2");
 		
 		this.timer3= Timer.builder("MKWEB_exec_time")
+				.description("Time spent on Loading main web page")
   .tag("host", "MYHOST")
   .tag("region", "us-east-1")
   .register(registry);
