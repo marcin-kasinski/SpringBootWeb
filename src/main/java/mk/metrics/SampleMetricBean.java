@@ -45,11 +45,12 @@ public class SampleMetricBean {
 
 	public void handleTimerNanoseconds(long duration) {
 		
-		System.out.println("handleTimer START / duration: nanoseconds : "+duration+" / miliseconds :"+duration/1000000);
+		System.out.println("handleTimer START / duration: nanoseconds : "+duration+" / miliseconds :"+duration/1000000+"/ sent to prometheus :"+duration/1000000);
 		//this.timer.record(duration, TimeUnit.NANOSECONDS);
 		this.timer1.record(Math.abs(duration/1000000), TimeUnit.MILLISECONDS);
 		this.timer2.record(Math.abs(duration/1000000000), TimeUnit.SECONDS);
-		this.timer3.record(Duration.ofMillis(duration/1000000));
+		//this.timer3.record(Duration.ofMillis(duration/1000000));
+		this.timer3.record(duration/1000000,TimeUnit.MILLISECONDS);
 		System.out.println("handleTimer END");
 	}
 }
