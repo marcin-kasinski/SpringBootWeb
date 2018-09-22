@@ -3,6 +3,8 @@ package mk.metrics;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 
@@ -12,6 +14,8 @@ import io.micrometer.core.instrument.Timer;
 
 @Component
 public class SampleMetricBean {
+
+	 private static Logger log = LoggerFactory.getLogger(SampleMetricBean.class);
 
 	private final Counter counter;
 	private final Timer timer1;
@@ -45,12 +49,12 @@ public class SampleMetricBean {
 
 	public void handleTimerNanoseconds(long duration) {
 		
-		System.out.println("handleTimer START / duration: nanoseconds : "+duration+" / miliseconds :"+duration/1000000+"/ sent to prometheus :"+Duration.ofMillis(duration/1000000));
+		log.info("handleTimer START / duration: nanoseconds : "+duration+" / miliseconds :"+duration/1000000+"/ sent to prometheus :"+Duration.ofMillis(duration/1000000));
 		//this.timer.record(duration, TimeUnit.NANOSECONDS);
 		this.timer1.record(Math.abs(duration/1000000), TimeUnit.MILLISECONDS);
 		this.timer2.record(Math.abs(duration/1000000000), TimeUnit.SECONDS);
 		this.timer3.record(Duration.ofMillis(duration/1000000));
 		//this.timer3.record(duration/1000000,TimeUnit.MILLISECONDS);
-		System.out.println("handleTimer END");
+		log.info("handleTimer END");
 	}
 }
