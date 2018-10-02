@@ -75,7 +75,7 @@ spring:
                                     kafka:
                                         binder:
                                             brokers: kafka-0.k-hs.default.svc.cluster.local,kafka-1.k-hs.default.svc.cluster.local,kafka-2.k-hs.default.svc.cluster.local
-                                            zkNodes: zk-0.zk-hs.default.svc.cluster.local,zk-1.zk-hs.default.svc.cluster.local,zk-2.zk-hs.default.svc.cluster.local/kafka
+                                            #zkNodes: zk-0.zk-hs.default.svc.cluster.local,zk-1.zk-hs.default.svc.cluster.local,zk-2.zk-hs.default.svc.cluster.local/kafka
                                             defaultZkPort: 2181
                                             defaultBrokerPort: 9092
 endpoints:
