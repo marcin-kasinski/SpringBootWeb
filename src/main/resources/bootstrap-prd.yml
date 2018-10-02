@@ -74,10 +74,18 @@ spring:
                                 stream:
                                     kafka:
                                         binder:
-                                            brokers: kafka-0.k-hs.default.svc.cluster.local,kafka-1.k-hs.default.svc.cluster.local,kafka-2.k-hs.default.svc.cluster.local
+                                            brokers: kafka-0.k-hs.default.svc.cluster.local:9093,kafka-1.k-hs.default.svc.cluster.local:9093,kafka-2.k-hs.default.svc.cluster.local:9093
                                             #zkNodes: zk-0.zk-hs.default.svc.cluster.local,zk-1.zk-hs.default.svc.cluster.local,zk-2.zk-hs.default.svc.cluster.local/kafka
-                                            defaultZkPort: 2181
-                                            defaultBrokerPort: 9092
+                                            #defaultZkPort: 2181
+                                            defaultBrokerPort: 9093
+                                            configuration:
+                                                security:
+                                                    protocol: SASL_PLAINTEXT
+                                                sasl:
+                                                    mechanism: GSSAPI
+                                                    kerberos:
+                                                        service:
+                                                            name: kafka
 endpoints:
     prometheus:
         enabled: true 
