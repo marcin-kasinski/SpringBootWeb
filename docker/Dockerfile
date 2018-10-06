@@ -1,4 +1,4 @@
-FROM openjdk:8
+FROM openjdk:9
 MAINTAINER Marcin Kasiński <marcin.kasinski@gmail.com> 
 
 RUN mkdir -p /usr/src/myapp/logs && touch /usr/src/myapp/logs/application.log
