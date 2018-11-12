@@ -25,7 +25,7 @@ public class SampleMetricBean {
 	public SampleMetricBean(MeterRegistry registry) {
 		
 		
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Registering");
+		log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Registering\nline2\nline3");
 		this.counter = registry.counter("MKWEB_6_received.messages");
 		this.timer1 = registry.timer("MKWEB_exec_time1");
 		this.timer2 = registry.timer("MKWEB_exec_time2");
