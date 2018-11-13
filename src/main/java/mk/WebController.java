@@ -1,5 +1,6 @@
 package mk;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -20,7 +21,7 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 
 //----------------------------------- 2.0.1 -----------------------------------	
 import brave.Span;
@@ -50,7 +51,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
+
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 import mk.http.RequestResponseLoggingInterceptor;
 import mk.kafka.KafkaWorkUnitGateway;
@@ -167,10 +171,43 @@ class WebController {
     }
 
 
+    public String getDataFallBack(Model model) {
+        return "failed";
+    }
 
+
+    public User addUserRest() {
+    	log.info("executing rest_url "+rest_url);
+    	
+    	User ret=null;
+		//restTemplate.setInterceptors(Collections.singletonList(new RequestResponseLoggingInterceptor()));
+
+//    	User  user  = restTemplate.getForObject(rest_url, User.class);
+
+//    	log.info("user "+user.getEmail());
+    	
+    	try {
+    	ResponseEntity<User> response =restTemplate.postForEntity(rest_url, new User("jakisemail@mail.com","Marcin"), User.class);
+
+    	ret=response.getBody();
+    	}
+    	catch(Exception e)
+    	{
+    		log.info("add user failed"+e);
+    	}
+
+    	return ret;
+
+    }
 
     
     
+    
+    
+    @HystrixCommand(fallbackMethod = "getDataFallBack",ignoreExceptions = { HttpServerErrorException.class } ,commandProperties = {
+     	     @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000") ,
+      	     @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "60000") 
+     	     })    
     @GetMapping("/")
     public String welcomeVIEW(Model model) {
     	/*
@@ -264,26 +301,11 @@ class WebController {
 
 //    	User  user  = restTemplate.getForObject("http://localhost:9191/api/get-by-email?email=x@x.com", User.class);
     	
-    	log.info("executing rest_url "+rest_url);
     	
+    	User user=addUserRest();
     	
-		//restTemplate.setInterceptors(Collections.singletonList(new RequestResponseLoggingInterceptor()));
+    	System.out.println("user added "+user);
 
-//    	User  user  = restTemplate.getForObject(rest_url, User.class);
-
-//    	log.info("user "+user.getEmail());
-    	
-    	try {
-    	ResponseEntity<User> response =restTemplate.postForEntity(rest_url, new User("jakisemail@mail.com","Marcin"), User.class);
-
-    	System.out.println("added user "+response.getBody());
-    	}
-    	catch(Exception e)
-    	{
-    		log.info("add user failed"+e);
-    	}
-
-    	
     	System.out.println("END");
     	long duration = System.nanoTime() - startTime;
     			
