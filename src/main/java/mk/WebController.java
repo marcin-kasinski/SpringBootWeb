@@ -21,7 +21,6 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 
 //----------------------------------- 2.0.1 -----------------------------------	
 import brave.Span;
@@ -53,8 +52,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
-
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 import mk.http.RequestResponseLoggingInterceptor;
 import mk.kafka.KafkaWorkUnitGateway;
@@ -200,14 +197,6 @@ class WebController {
 
     }
 
-    
-    
-    
-    
-    @HystrixCommand(fallbackMethod = "getDataFallBack",ignoreExceptions = { HttpServerErrorException.class } ,commandProperties = {
-     	     @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000") ,
-      	     @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "60000") 
-     	     })    
     @GetMapping("/")
     public String welcomeVIEW(Model model) {
     	/*
