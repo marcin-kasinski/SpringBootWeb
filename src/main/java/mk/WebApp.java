@@ -10,10 +10,13 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @EnableDiscoveryClient
 @SpringBootApplication
 public class WebApp {
+	
+	
+	
 
 	public static void main(String[] args) {
 
-		System.out.println("Version 31.08.2018");
+		System.out.println("Version 27.12.2018");
 		System.out.println("Environment variables");
 		
 //		UUID uniqueKey = UUID.randomUUID();

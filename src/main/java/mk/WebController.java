@@ -64,7 +64,7 @@ import mk.rabbitmq.WorkUnitGateway;
 @Controller
 @EnableBinding(Source.class)
 class WebController {
-	
+
 	@Value("${app.ajax_url}")
 	String ajax_url;
 
