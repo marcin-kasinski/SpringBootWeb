@@ -23,8 +23,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 //----------------------------------- 2.0.1 -----------------------------------	
-import brave.Span;
-import brave.Tracer;
+//import brave.Span;
+//import brave.Tracer;
 //----------------------------------- 2.0.1 -----------------------------------	
 
 //----------------------------------- 1.5.10 -----------------------------------
@@ -108,8 +108,8 @@ class WebController {
 //    @Autowired
 //    private KafkaTemplate<String, String> kafkaTemplate;
     
-    @Autowired
-	private Tracer tracer;
+//    @Autowired
+//	private Tracer tracer;
 
     
 	 private static Logger log = LoggerFactory.getLogger(WebController.class);
@@ -244,15 +244,15 @@ class WebController {
 
 
     	//----------------------------------- 2.0.1 -----------------------------------		
-		Span span=tracer.currentSpan();
-		String spanTraceId= span.context().traceIdString();
+//		Span span=tracer.currentSpan();
+//		String spanTraceId= span.context().traceIdString();
 		//----------------------------------- 2.0.1 -----------------------------------		
 
 
 //		String spanId= String.valueOf(span.context().spanId());
 
 		
-    	model.addAttribute("traceid",spanTraceId);
+//    	model.addAttribute("traceid",spanTraceId);
     	//model.addAttribute("spanid",UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE);
     	model.addAttribute("spanid",(UUID.randomUUID().toString()).replace("-","").substring(0, 16));
     	
@@ -260,12 +260,12 @@ class WebController {
     	
     	
 		
-    	log.info("Log data: "+spanTraceId+" "+spanTraceId);
+//    	log.info("Log data: "+spanTraceId+" "+spanTraceId);
 
 		
     	
-    	if (env.acceptsProfiles("prd")) sendRabbitRequests(spanTraceId);
-    	if (env.acceptsProfiles("prd")) sendKafkaRequests(spanTraceId);
+    	if (env.acceptsProfiles("prd")) sendRabbitRequests("spanTraceId");
+    	if (env.acceptsProfiles("prd")) sendKafkaRequests("spanTraceId");
 
     	 
     	 
