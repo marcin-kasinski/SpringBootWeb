@@ -132,6 +132,7 @@ class WebController {
     {
 		//wywo�anie rabbitmq i kaka
     	
+    	log.info("sendKafkaRequests");
 
     	Map<String, String> headers = new HashMap<String, String>();
     	
@@ -146,6 +147,7 @@ class WebController {
    	 kafkaWorkUnitGateway.generate(sampleWorkUnit, headers);
 		//wywo�anie rabbitmq i kaka
 
+ 	log.info("sendKafkaRequests executed");
 
     }
 
