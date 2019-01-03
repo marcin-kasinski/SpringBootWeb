@@ -23,8 +23,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 //----------------------------------- 2.0.1 -----------------------------------	
-//import brave.Span;
-//import brave.Tracer;
+import brave.Span;
+import brave.Tracer;
 //----------------------------------- 2.0.1 -----------------------------------	
 
 //----------------------------------- 1.5.10 -----------------------------------
@@ -108,8 +108,8 @@ class WebController {
 //    @Autowired
 //    private KafkaTemplate<String, String> kafkaTemplate;
     
-//    @Autowired
-//	private Tracer tracer;
+    @Autowired
+	private Tracer tracer;
 
     
 	 private static Logger log = LoggerFactory.getLogger(WebController.class);
@@ -207,7 +207,7 @@ class WebController {
 	       log.info("Sending message...");
 	       log.info("span..."+span.getTraceId());
      
-			String spanTraceId= Span.idToHex(span.getTraceId());
+			spanTraceId= Span.idToHex(span.getTraceId());
 			String spanId= Span.idToHex(span.getSpanId());
 
         MessageProperties properties = new MessageProperties();
@@ -244,8 +244,8 @@ class WebController {
 
 
     	//----------------------------------- 2.0.1 -----------------------------------		
-//		Span span=tracer.currentSpan();
-//		String spanTraceId= span.context().traceIdString();
+		Span span=tracer.currentSpan();
+		String spanTraceId= span.context().traceIdString();
 		//----------------------------------- 2.0.1 -----------------------------------		
 
 
