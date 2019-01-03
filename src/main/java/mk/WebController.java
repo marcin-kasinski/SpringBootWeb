@@ -207,7 +207,7 @@ class WebController {
 	       log.info("Sending message...");
 	       log.info("span..."+span.getTraceId());
      
-			spanTraceId= Span.idToHex(span.getTraceId());
+			String spanTraceId= Span.idToHex(span.getTraceId());
 			String spanId= Span.idToHex(span.getSpanId());
 
         MessageProperties properties = new MessageProperties();
@@ -252,7 +252,7 @@ class WebController {
 //		String spanId= String.valueOf(span.context().spanId());
 
 		
-//    	model.addAttribute("traceid",spanTraceId);
+    	model.addAttribute("traceid",spanTraceId);
     	//model.addAttribute("spanid",UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE);
     	model.addAttribute("spanid",(UUID.randomUUID().toString()).replace("-","").substring(0, 16));
     	
@@ -260,7 +260,7 @@ class WebController {
     	
     	
 		
-//    	log.info("Log data: "+spanTraceId+" "+spanTraceId);
+    	log.info("Log data: "+spanTraceId+" "+spanTraceId);
 
 		
     	
