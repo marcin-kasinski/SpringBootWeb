@@ -72,6 +72,9 @@ class WebController {
 	@Value("${app.event_url}")	
 	String event_url;
 
+	@Value("${app.event_kafka_url}")	
+	String event_kafka_url;
+
 	@Value("${app.rest_url}")
 	String rest_url;
 	
@@ -264,9 +267,11 @@ class WebController {
     	
 
     	log.info("event_url "+event_url);
+    	log.info("event_kafka_url "+event_kafka_url);
 
     	
     	model.addAttribute("app_event_url",event_url);
+    	model.addAttribute("app_event_kafka_url",event_kafka_url);
     	
     	
 		

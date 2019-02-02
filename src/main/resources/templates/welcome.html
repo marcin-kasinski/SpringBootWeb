@@ -10,8 +10,9 @@
     
     var a='';
     var event_url = [[${app_event_url}]];
+    var event_kafka_url = [[${app_event_kafka_url}]];
     
-    alert ('XXXtraceid:'+traceid+' spanid:'+spanid+' ajax_url:'+ajax_url+' event_url:'+event_url);
+    alert ('XXXtraceid:'+traceid+' spanid:'+spanid+' ajax_url:'+ajax_url+' event_url:'+event_url+' event_kafka_url:'+event_kafka_url);
 
 /*]]>*/
 </script>
@@ -41,8 +42,13 @@
 
 <main>
     <h2>Spring MVC Async</h2>
+    <b>RBE</b><br>
     <div id="rbe"></div>
+    <b>SSE</b><br>
     <div id="sse"></div>
+    <b>KAFKA SSE</b><br>
+    <div id="kafkasse"></div>
+    <b>SRB</b><br>
     <div id="srb"></div>
 </main>    
     
@@ -220,6 +226,17 @@ xhr(event_url+'/rbe').then(function(success){
 var sse = new EventSource(event_url+'/sse');
 sse.onmessage = function (evt) {
   var el = document.getElementById('sse');
+  el.appendChild(document.createTextNode(evt.data));
+  el.appendChild(document.createElement('br'))
+};
+
+/**
+ * kafkaSSE
+ */
+
+var kafkasse = new EventSource(event_kafka_url);
+kafkasse.onmessage = function (evt) {
+  var el = document.getElementById('kafkasse');
   el.appendChild(document.createTextNode(evt.data));
   el.appendChild(document.createElement('br'))
 };
