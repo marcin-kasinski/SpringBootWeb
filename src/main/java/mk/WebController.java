@@ -68,6 +68,10 @@ class WebController {
 
 	@Value("${app.ajax_url}")
 	String ajax_url;
+	
+	
+	@Value("${app.event_url}")	
+	String event_url;
 
 	@Value("${app.rest_url}")
 	String rest_url;
@@ -258,6 +262,12 @@ class WebController {
     	model.addAttribute("spanid",(UUID.randomUUID().toString()).replace("-","").substring(0, 16));
     	
     	model.addAttribute("app_ajax_url",ajax_url);
+    	
+
+    	log.info("event_url "+event_url);
+
+    	
+    	model.addAttribute("app_event_url",event_url);
     	
     	
 		

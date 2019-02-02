@@ -16,7 +16,7 @@ public class WebApp {
 
 	public static void main(String[] args) {
 
-		System.out.println("Version 27.12.2018");
+		System.out.println("Version 02.02.2019");
 		System.out.println("Environment variables");
 		
 //		UUID uniqueKey = UUID.randomUUID();
