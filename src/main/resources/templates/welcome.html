@@ -35,6 +35,14 @@
             <p class="greeting-content">The content is </p>
         </div>
     
+
+<main>
+    <h2>Spring MVC Async</h2>
+    <div id="rbe"></div>
+    <div id="sse"></div>
+    <div id="srb"></div>
+</main>    
+    
 <script>
 
 
@@ -158,5 +166,75 @@ alert("2");
 
 </script>    
     
+    
+<script>
+
+
+/**
+ * AJAX Helpers.
+ */
+
+var xhr = function(url) {
+  return new Promise(function(resolve, reject) {
+    try {
+      var xmhr = new XMLHttpRequest();
+
+      //Listen for API Response
+      xmhr.onreadystatechange = function() {
+        if (xmhr.readyState == XMLHttpRequest.DONE && xmhr.status == 200) return resolve(xmhr.responseText);
+      };
+
+      //Open connection
+      xmhr.open("GET", url, true);
+      //Additional headers as needed
+      //x.withCredentials = true;
+      //x.setRequestHeader("Accept", "application/json");
+      //x.setRequestHeader("Content-Type", "text/plain");
+
+      //Perform the actual AJAX call
+      xmhr.send();
+
+    } catch (ex) {
+      reject("Exception: Oh CORS's you've made a mistake!");
+    }
+  });
+};
+
+/**
+ * RBE
+ */
+
+xhr('http://localhost:7070/rbe').then(function(success){
+  var el = document.getElementById('rbe');
+  el.appendChild(document.createTextNode(success));
+  el.appendChild(document.createElement('br'))
+});
+
+/**
+ * SSE
+ */
+
+var sse = new EventSource('http://localhost:7070/sse');
+sse.onmessage = function (evt) {
+  var el = document.getElementById('sse');
+  el.appendChild(document.createTextNode(evt.data));
+  el.appendChild(document.createElement('br'))
+};
+
+/**
+ * SRB
+ */
+
+xhr('http://localhost:7070/srb').then(function(success){
+  var el = document.getElementById('srb');
+  el.appendChild(document.createTextNode(success));
+  el.appendChild(document.createElement('br'))
+});
+
+
+
+</script>    
+
+
 </body>
 </html>

@@ -36,12 +36,12 @@ import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.integration.support.MessageBuilder;
 //import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.messaging.MessageChannel;
-
-
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,6 +52,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
 import mk.http.RequestResponseLoggingInterceptor;
 import mk.kafka.KafkaWorkUnitGateway;
@@ -305,6 +306,9 @@ class WebController {
         return "welcome";
     }
 
+
+
+    
 /*
 	@RequestMapping("/")
 	public String greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
