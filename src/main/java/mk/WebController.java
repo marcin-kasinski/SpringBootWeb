@@ -68,8 +68,7 @@ class WebController {
 
 	@Value("${app.ajax_url}")
 	String ajax_url;
-	
-	
+
 	@Value("${app.event_url}")	
 	String event_url;
 

@@ -21,8 +21,11 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 
+		<!-- 
+		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version> 
+		<spring-cloud.version>Greenwich.M2</spring-cloud.version>
+		-->
 		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
-		<!-- <spring-cloud.version>Greenwich.M2</spring-cloud.version> -->
 		<start-class>mk.WebApp</start-class>
 	</properties>
 
@@ -202,16 +205,18 @@
 		</dependencies>
 	</dependencyManagement>
 
+<repositories>
 
-	<repositories>
-		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/libs-milestone</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
+<!-- for Greenwich.M2 -->
+    <repository>
+        <id>spring-milestones</id>
+        <name>Spring Milestones</name>
+        <url>http://repo.spring.io/libs-milestone-local</url>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+    </repository>
+</repositories>
+
 
 </project>
