@@ -11,6 +11,17 @@
     var a='';
     var event_url = [[${app_event_url}]];
     var event_kafka_url = [[${app_event_kafka_url}]];
+    var id = [[${id}]];
+
+    alert ('in id='+id);
+
+    var full_kafka_url=event_kafka_url+'?id='+id
+    alert ('full_kafka_url '+full_kafka_url) ;
+    
+
+    
+    
+    
     
     alert ('XXXtraceid:'+traceid+' spanid:'+spanid+' ajax_url:'+ajax_url+' event_url:'+event_url+' event_kafka_url:'+event_kafka_url);
 
@@ -212,12 +223,16 @@ var xhr = function(url) {
 /**
  * RBE
  */
+ alert ('before rbe ') ;
 
+ 
 xhr(event_url+'/rbe').then(function(success){
   var el = document.getElementById('rbe');
   el.appendChild(document.createTextNode(success));
   el.appendChild(document.createElement('br'))
 });
+
+alert ('after rbe ') ;
 
 /**
  * SSE
@@ -234,7 +249,10 @@ sse.onmessage = function (evt) {
  * kafkaSSE
  */
 
-var kafkasse = new EventSource(event_kafka_url+'?id='+id);
+ 
+alert ('invoking full_kafka_url '+full_kafka_url) ;
+ 
+var kafkasse = new EventSource(full_kafka_url);
 kafkasse.onmessage = function (evt) {
   var el = document.getElementById('kafkasse');
   el.appendChild(document.createTextNode(evt.data));
