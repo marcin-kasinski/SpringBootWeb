@@ -22,7 +22,7 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 <body>
-	<h1>Result VER 02.02.2019 17:06</h1>
+	<h1>Result VER 03.02.2019 20:47</h1>
 	<h1 th:text="'Span trace id: ' + ${traceid}"></h1>
 
 <table>
@@ -234,7 +234,7 @@ sse.onmessage = function (evt) {
  * kafkaSSE
  */
 
-var kafkasse = new EventSource(event_kafka_url+"?id="+id);
+var kafkasse = new EventSource(event_kafka_url+'?id='+id);
 kafkasse.onmessage = function (evt) {
   var el = document.getElementById('kafkasse');
   el.appendChild(document.createTextNode(evt.data));
