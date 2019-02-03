@@ -222,14 +222,14 @@ xhr(event_url+'/rbe').then(function(success){
 /**
  * SSE
  */
-
+/*
 var sse = new EventSource(event_url+'/sse');
 sse.onmessage = function (evt) {
   var el = document.getElementById('sse');
   el.appendChild(document.createTextNode(evt.data));
   el.appendChild(document.createElement('br'))
 };
-
+*/
 /**
  * kafkaSSE
  */
