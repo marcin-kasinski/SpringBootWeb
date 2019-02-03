@@ -148,7 +148,10 @@ class WebController {
 
     	
    	 WorkUnit sampleWorkUnit = new WorkUnit(spanTraceId, spanTraceId,new Date().toGMTString(), "definition");
-//   	 workUnitGateway.generate(sampleWorkUnit, "mkheader1value");
+
+ 	log.info("sending sampleWorkUnit "+sampleWorkUnit );
+
+   	 //   	 workUnitGateway.generate(sampleWorkUnit, "mkheader1value");
 //   	 kafkaWorkUnitGateway.generate(sampleWorkUnit, "mkheader1value");
 
    	 kafkaWorkUnitGateway.generate(sampleWorkUnit, headers);
@@ -283,8 +286,8 @@ class WebController {
 
 		
     	
-    	if (env.acceptsProfiles("prd")) sendRabbitRequests("spanTraceId");
-    	if (env.acceptsProfiles("prd")) sendKafkaRequests("spanTraceId");
+    	if (env.acceptsProfiles("prd")) sendRabbitRequests(id);
+    	if (env.acceptsProfiles("prd")) sendKafkaRequests(id);
 
     	 
     	 
