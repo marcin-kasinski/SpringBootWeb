@@ -207,7 +207,7 @@ class WebController {
     }
 
     @GetMapping("/")
-    public String welcomeVIEW(Model model) {
+    public String welcomeVIEW(@RequestParam(value = "id", defaultValue = ".") String id,Model model) {
     	/*
     	   Span span=tracer.getCurrentSpan();
        	
@@ -233,6 +233,8 @@ class WebController {
 */
         
     	log.info("IN welcomeVIEW executed");
+	    log.info("id="+id);
+
 		sampleBean.handleMessage("XXX");
 		long startTime = System.nanoTime();
 
@@ -259,11 +261,13 @@ class WebController {
 //		String spanId= String.valueOf(span.context().spanId());
 
 		
-    	model.addAttribute("traceid",spanTraceId);
+    	//model.addAttribute("traceid",spanTraceId);
+    	model.addAttribute("traceid",id);
     	//model.addAttribute("spanid",UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE);
     	model.addAttribute("spanid",(UUID.randomUUID().toString()).replace("-","").substring(0, 16));
     	
     	model.addAttribute("app_ajax_url",ajax_url);
+    	model.addAttribute("id",id);
     	
 
     	log.info("event_url "+event_url);

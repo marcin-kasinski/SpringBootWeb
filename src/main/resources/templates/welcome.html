@@ -234,7 +234,7 @@ sse.onmessage = function (evt) {
  * kafkaSSE
  */
 
-var kafkasse = new EventSource(event_kafka_url);
+var kafkasse = new EventSource(event_kafka_url+"/?id="+id);
 kafkasse.onmessage = function (evt) {
   var el = document.getElementById('kafkasse');
   el.appendChild(document.createTextNode(evt.data));
