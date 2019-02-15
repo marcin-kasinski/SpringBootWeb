@@ -26,6 +26,8 @@
 		<spring-cloud.version>Greenwich.M2</spring-cloud.version>
 		-->
 		<spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
+		<spring-boot-admin-starter-client-version>2.1.2</spring-boot-admin-starter-client-version>
+
 		<start-class>mk.WebApp</start-class>
 	</properties>
 
@@ -111,6 +113,11 @@
 	</build>
 	<dependencies>
 
+<dependency>
+    <groupId>de.codecentric</groupId>
+    <artifactId>spring-boot-admin-starter-client</artifactId>
+    <version>${spring-boot-admin-starter-client-version}</version>
+</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
 		<dependency>
