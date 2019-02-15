@@ -11,7 +11,7 @@ logging:
 server:
     port: 7070
 spring.main.allow-bean-definition-overriding: true
-spring.boot.admin.client.url: http://springbootadmin:30080/admin
+spring.boot.admin.client.url: http://127.0.0.1:8080/
 spring:
     application:
         name: SpringBootWeb
