@@ -3,21 +3,28 @@ package mk;
 import java.util.Map;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.cloud.sleuth.zipkin2.ZipkinProperties;
+import org.springframework.cloud.sleuth.zipkin2.ZipkinRestTemplateCustomizer;
 //import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
 import brave.sampler.Sampler;
 import zipkin2.Span;
 import zipkin2.reporter.Reporter;
+import zipkin2.reporter.Sender;
 
 //@EnableDiscoveryClient
 @SpringBootApplication
 public class WebApp {
 	
-	
+	 private static Logger log = LoggerFactory.getLogger(WebApp.class);
+
 	
 
 	public static void main(String[] args) {
@@ -53,6 +60,18 @@ public class WebApp {
 		public Reporter<Span> spanReporter() {
 			return Reporter.CONSOLE;
 	}	
-	
-	
+
+		
+		   @Bean
+		    public CommonsRequestLoggingFilter logFilter() {
+		        CommonsRequestLoggingFilter filter
+		          = new CommonsRequestLoggingFilter();
+		        filter.setIncludeQueryString(true);
+		        filter.setIncludePayload(true);
+		        filter.setMaxPayloadLength(10000);
+		        filter.setIncludeHeaders(false);
+		        filter.setAfterMessagePrefix("REQUEST DATA : ");
+		        return filter;
+		    }
+
 }

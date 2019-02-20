@@ -1,3 +1,4 @@
+sample.zipkin.enabled: false
 #app.ajax_url: http://springbootmicroserviceingress:30080/api/get-by-email?email=ajax@ajax.com
 app.ajax_url: ${APP_AJAX_URL:http://springbootmicroservice:30080/api/get-by-email4?email=ajax@ajax.com}
 app.event_url: "http://localhost:7070"
@@ -8,6 +9,7 @@ logging:
     level:
         root: INFO 
     file: logs/application.log
+    level.org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
     #level.zipkin: TRACE
     #level.zipkin2: TRACE
     #level.org.springframework.cloud.sleuth.zipkin: TRACE
