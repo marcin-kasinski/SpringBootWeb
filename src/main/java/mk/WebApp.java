@@ -6,6 +6,9 @@ import java.util.UUID;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 //import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.annotation.Bean;
+
+import brave.sampler.Sampler;
 
 //@EnableDiscoveryClient
 @SpringBootApplication
@@ -16,7 +19,7 @@ public class WebApp {
 
 	public static void main(String[] args) {
 
-		System.out.println("Version 02.02.2019");
+		System.out.println("Version 20.02.2019");
 		System.out.println("Environment variables");
 		
 //		UUID uniqueKey = UUID.randomUUID();
@@ -34,5 +37,8 @@ public class WebApp {
 
 		SpringApplication.run(WebApp.class, args);
 	}
-
+	@Bean
+	public Sampler defaultSampler() {
+		return Sampler.ALWAYS_SAMPLE;
+	}
 }

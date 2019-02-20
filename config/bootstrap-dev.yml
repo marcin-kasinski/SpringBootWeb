@@ -8,6 +8,12 @@ logging:
     level:
         root: INFO 
     file: logs/application.log
+    #level.zipkin: TRACE
+    #level.zipkin2: TRACE
+    #level.org.springframework.cloud.sleuth.zipkin: TRACE
+    #level.org.springframework.cloud.sleuth.zipkin2: TRACE
+    #level.org.springframework.cloud.sleuth.log: TRACE
+    
 server:
     port: 7070
 spring.main.allow-bean-definition-overriding: true
