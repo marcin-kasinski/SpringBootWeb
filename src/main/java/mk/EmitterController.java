@@ -125,7 +125,7 @@ class EmitterController {
 		         return emitter;
 		    }   
     @GetMapping("/srb")
-    //@Async("threadPoolTaskExecutor")
+    @Async("threadPoolTaskExecutor")
     public ResponseEntity<StreamingResponseBody> handlesrb(HttpServletRequest r) {
         StreamingResponseBody stream = out -> {
         	

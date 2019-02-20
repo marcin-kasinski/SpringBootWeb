@@ -264,8 +264,8 @@ class WebController {
 //		String spanId= String.valueOf(span.context().spanId());
 
 		
-    	//model.addAttribute("traceid",spanTraceId);
-    	model.addAttribute("traceid",id);
+    	model.addAttribute("traceid",spanTraceId);
+    	//model.addAttribute("traceid",id);
     	//model.addAttribute("spanid",UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE);
     	model.addAttribute("spanid",(UUID.randomUUID().toString()).replace("-","").substring(0, 16));
     	

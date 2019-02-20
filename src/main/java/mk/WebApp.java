@@ -37,8 +37,14 @@ public class WebApp {
 
 		SpringApplication.run(WebApp.class, args);
 	}
+	/*
 	@Bean
 	public Sampler defaultSampler() {
 		return Sampler.ALWAYS_SAMPLE;
 	}
+	*/
+	
+	
+	
+	
 }

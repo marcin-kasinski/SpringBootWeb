@@ -1,9 +1,9 @@
 #app.ajax_url: http://springbootmicroserviceingress:30080/api/get-by-email?email=ajax@ajax.com
-app.ajax_url: ${APP_AJAX_URL:http://localhost:9191/api/get-by-email?email=ajax@ajax.com}
+app.ajax_url: ${APP_AJAX_URL:http://springbootmicroservice:30080/api/get-by-email4?email=ajax@ajax.com}
 app.event_url: "http://localhost:7070"
 app.event_kafka_url: "springbootkafkalistener:30080/events"
 #app.rest_url: http://localhost:9191/api/get-by-email?email=x@x.com
-app.rest_url: http://localhost:9191/api/adduser
+app.rest_url: http://springbootmicroservice:30080/api/adduser
 logging:
     level:
         root: INFO 
