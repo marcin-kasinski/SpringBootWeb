@@ -37,7 +37,7 @@ spring:
         password: guest
         port: 5672
     zipkin:
-        baseUrl: http://springbootzipkin:30080
+        baseUrl: http://zipkin:30080
         sender:
             type: web
     sleuth:
