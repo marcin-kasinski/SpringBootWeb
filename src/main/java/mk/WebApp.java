@@ -5,10 +5,13 @@ import java.util.UUID;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 //import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 
 import brave.sampler.Sampler;
+import zipkin2.Span;
+import zipkin2.reporter.Reporter;
 
 //@EnableDiscoveryClient
 @SpringBootApplication
@@ -44,7 +47,12 @@ public class WebApp {
 	}
 	*/
 	
-	
+	// Use this for debugging (or if there is no Zipkin server running on port 9411)
+		@Bean
+		@ConditionalOnProperty(value = "sample.zipkin.enabled", havingValue = "false")
+		public Reporter<Span> spanReporter() {
+			return Reporter.CONSOLE;
+	}	
 	
 	
 }
