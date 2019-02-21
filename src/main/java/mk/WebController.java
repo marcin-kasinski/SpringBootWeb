@@ -36,6 +36,7 @@ import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.integration.support.MessageBuilder;
@@ -47,6 +48,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -210,7 +212,17 @@ class WebController {
     }
 
     @GetMapping("/")
-    public String welcomeVIEW(@RequestParam(value = "id", defaultValue = ".") String id,Model model) {
+    public String welcomeVIEW(@RequestParam(value = "id", defaultValue = ".") String id,Model model
+    		
+    		
+    		
+    		,
+			@RequestHeader HttpHeaders headers
+    		
+    		
+    		
+    		
+    		) {
     	/*
     	   Span span=tracer.getCurrentSpan();
        	
@@ -241,6 +253,21 @@ class WebController {
 		sampleBean.handleMessage("XXX");
 		long startTime = System.nanoTime();
 
+		System.out.println("Headers start");
+    	Set<String> keys = headers.keySet();
+		for (String key : keys) {
+
+			List<String> value = headers.get(key);
+
+			int size = value.size();
+			
+			for (int i=0;i<size;i++) log.info(key + " " +value.get(i));
+
+
+
+		}
+
+		System.out.println("Headers end");
     	
 //   	gateway.send("12345678901qaz2wsx3edc4rfv");
     	

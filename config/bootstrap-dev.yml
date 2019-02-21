@@ -10,11 +10,11 @@ logging:
         root: INFO 
     file: logs/application.log
     level.org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
-    #level.zipkin: TRACE
-    #level.zipkin2: TRACE
-    #level.org.springframework.cloud.sleuth.zipkin: TRACE
-    #level.org.springframework.cloud.sleuth.zipkin2: TRACE
-    #level.org.springframework.cloud.sleuth.log: TRACE
+    #level.zipkin: DEBUG
+    #level.zipkin2: DEBUG
+    #level.org.springframework.cloud.sleuth.zipkin: DEBUG
+    #level.org.springframework.cloud.sleuth.zipkin2: DEBUG
+    #level.org.springframework.cloud.sleuth.log: DEBUG
     
 server:
     port: 7070
