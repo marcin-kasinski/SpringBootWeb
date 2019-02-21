@@ -29,7 +29,7 @@ public class WebApp {
 
 	public static void main(String[] args) {
 
-		System.out.println("Version 20.02.2019");
+		System.out.println("Version 21.02.2019");
 		System.out.println("Environment variables");
 		
 //		UUID uniqueKey = UUID.randomUUID();

@@ -15,8 +15,9 @@ import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.util.StreamUtils;
 
-public class LoggingRequestInterceptor implements ClientHttpRequestInterceptor {
-
+//public class LoggingRequestInterceptor implements ClientHttpRequestInterceptor {
+public class LoggingRequestInterceptor {
+/*
     private static final Logger log = LoggerFactory.getLogger(LoggingRequestInterceptor.class);
 
     @Override
@@ -47,10 +48,7 @@ public class LoggingRequestInterceptor implements ClientHttpRequestInterceptor {
         log.info("Headers      : {}", response.getHeaders());
         log.info("Response body: {}", StreamUtils.copyToString(response.getBody(), Charset.defaultCharset()));
         log.info("=======================response end=================================================");
-        
-        
-        
-        
-        
+
     }
+*/    
 }
