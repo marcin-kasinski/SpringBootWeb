@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class ZipkinConfig {
+	/*
 	@Bean ZipkinRestTemplateCustomizer myCustomizer() {
 		return new ZipkinRestTemplateCustomizer() {
 			@Override
@@ -31,4 +32,5 @@ public class ZipkinConfig {
 			}
 		};
 	}
+	*/
 }
