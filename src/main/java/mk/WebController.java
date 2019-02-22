@@ -14,6 +14,7 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.UUID;
+import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -211,18 +212,30 @@ class WebController {
 
     }
 
+    
+    private final WebControllerTaskExecutor webControllerTaskExecutor;
+    
+
+    
+    @Autowired
+    public WebController(WebControllerTaskExecutor webControllerTaskExecutor) {
+        this.webControllerTaskExecutor = webControllerTaskExecutor;
+    }
+  
     @GetMapping("/")
-    public String welcomeVIEW(@RequestParam(value = "id", defaultValue = ".") String id,Model model
-    		
-    		
-    		
-    		,
-			@RequestHeader HttpHeaders headers
-    		
-    		
-    		
-    		
-    		) {
+    public Callable<String> welcomeVIEW(@RequestParam(value = "id", defaultValue = ".") String id,Model model,@RequestHeader HttpHeaders headers) {
+
+    	Callable<String> callable = () -> webControllerTaskExecutor.welcomeVIEWExec(id,model,headers);
+    	return callable;
+    }
+ 
+    @GetMapping("/blocked")
+    public String welcomeVIEWblocked(@RequestParam(value = "id", defaultValue = ".") String id,Model model,@RequestHeader HttpHeaders headers) {
+
+    	return webControllerTaskExecutor.welcomeVIEWExec(id,model,headers);
+    }
+ 
+    public String welcomeVIEWExec(String id,Model model,HttpHeaders headers) {
     	/*
     	   Span span=tracer.getCurrentSpan();
        	
@@ -247,6 +260,12 @@ class WebController {
     	log.info("kafkaTemplate sent");
 */
         
+    	try {
+			Thread.sleep(600);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	log.info("IN welcomeVIEW executed");
 	    log.info("id="+id);
 
