@@ -18,7 +18,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
-import javax.servlet.http.HttpServletRequest;
+//import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -124,6 +124,10 @@ class EmitterController {
 		         });
 		         return emitter;
 		    }   
+		    
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*		    
+		    
     @GetMapping("/srb")
     @Async("threadPoolTaskExecutor")
     public ResponseEntity<StreamingResponseBody> handlesrb(HttpServletRequest r) {
@@ -149,6 +153,11 @@ class EmitterController {
         return new ResponseEntity(stream, HttpStatus.OK);
     }
     
+*/  
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    
+    
+    
 
 }
