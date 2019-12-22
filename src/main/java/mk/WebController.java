@@ -213,26 +213,28 @@ class WebController {
     }
 
     
-    private final WebControllerTaskExecutor webControllerTaskExecutor;
+//    private final WebControllerTaskExecutor webControllerTaskExecutor;
     
 
     
     @Autowired
     public WebController(WebControllerTaskExecutor webControllerTaskExecutor) {
-        this.webControllerTaskExecutor = webControllerTaskExecutor;
+    //    this.webControllerTaskExecutor = webControllerTaskExecutor;
     }
-  
+
+    /*
     @GetMapping("/")
     public Callable<String> welcomeVIEW(@RequestParam(value = "id", defaultValue = ".") String id,Model model,@RequestHeader HttpHeaders headers) {
 
     	Callable<String> callable = () -> webControllerTaskExecutor.welcomeVIEWExec(id,model,headers);
     	return callable;
     }
- 
-    @GetMapping("/blocked")
+ */
+    @GetMapping("/")
     public String welcomeVIEWblocked(@RequestParam(value = "id", defaultValue = ".") String id,Model model,@RequestHeader HttpHeaders headers) {
 
-    	return webControllerTaskExecutor.welcomeVIEWExec(id,model,headers);
+		//return webControllerTaskExecutor.welcomeVIEWExec(id,model,headers);
+		return welcomeVIEWExec(id,model,headers);
     }
  
     public String welcomeVIEWExec(String id,Model model,HttpHeaders headers) {
