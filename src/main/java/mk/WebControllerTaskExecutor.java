@@ -65,9 +65,9 @@ import mk.rabbitmq.WorkUnit;
 import mk.rabbitmq.WorkUnitGateway;
 
 
-
-@Service
-@EnableBinding(Source.class)
+//removed adnotations
+//@Service
+//@EnableBinding(Source.class)
 class WebControllerTaskExecutor {
 
 	@Value("${app.ajax_url}")

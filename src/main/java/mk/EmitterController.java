@@ -68,11 +68,10 @@ import mk.rabbitmq.WorkUnit;
 import mk.rabbitmq.WorkUnitGateway;
 
 
-
-@Controller
-@EnableBinding(Source.class)
+//removed adnotations
+//@Controller
+//@EnableBinding(Source.class)
 class EmitterController {
-
 
     
 	 private static Logger log = LoggerFactory.getLogger(EmitterController.class);
@@ -124,8 +123,8 @@ class EmitterController {
 		         });
 		         return emitter;
 		    }   
-		    
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*		    
 		    
     @GetMapping("/srb")
