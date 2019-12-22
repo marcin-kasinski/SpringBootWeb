@@ -335,7 +335,7 @@ class WebController {
 
 		
     	
-    	if (env.acceptsProfiles("prd")) sendRabbitRequests(id);
+    	//if (env.acceptsProfiles("prd")) sendRabbitRequests(id);
     	if (env.acceptsProfiles("prd")) sendKafkaRequests(id);
 
     	 
